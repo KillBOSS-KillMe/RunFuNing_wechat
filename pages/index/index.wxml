@@ -26,10 +26,10 @@
     <scroll-view class="VerticalMain" scroll-y scroll-with-animation scroll-into-view="main-{{MainCur}}">
       <view wx:for="{{goodsArr}}" data-idx="{{item.id}}" wx:key>
         <view class="item"  data-img="{{item.img}}" data-iscar="{{item.is_car}}" data-price="{{item.price}}" data-spec="{{item.spec}}" data-id="{{item.id}}" data-longimg="{{item.longimg}}" data-index="{{index}}">
-        <!-- bindtap='detail' -->
-          <image  src="{{item.img}}" ></image>
+        <!--  -->
+          <image  src="{{item.img}}" bindtap='detail'></image>
           <view class="content-R">
-            <view class="goodsName">{{item.spec}}</view>
+            <view class="goodsName" bindtap='detail'>{{item.spec}}</view>
             <view class="goodstag">剩余</view>
             <view class='pricewrap'>
               ￥<text>{{item.price}}</text>

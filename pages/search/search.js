@@ -1,11 +1,13 @@
 // pages/search/search.js
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    searchName: '',
+    list: []
   },
 
   /**
@@ -14,53 +16,52 @@ Page({
   onLoad: function (options) {
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  getSearchNum(e) {
+    this.setData({
+      searchName: e.detail.value
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  runSearch() {
+    let searchName = this.data.searchName
+    if (searchName == '') {
+      wx.showToast({
+        title: '请输入搜索内容',
+        icon: 'loading'
+      });
+      return false
+    }
+    wx.request({
+      url: `http://shu.beaconway.cn/Good/search`,
+      method: 'POST',
+      data: {
+        info: searchName
+      },
+      success: res => {
+        wx.hideToast()
+        if (res.data.code == 1) {
+          var goodsList = res.data.data;
+          if (goodsList.length > 0) {
+            for (let i = 0; i < goodsList.length; i++) {
+              goodsList[i]['num'] = 0
+            }
+            this.setData({
+              list: goodsList
+            })
+          } else {
+            wx.showToast({
+              title: '未搜索到商品',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        } else {
+          wx.showToast({
+            title: '未搜索到商品',
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      }
+    })
   }
 })
