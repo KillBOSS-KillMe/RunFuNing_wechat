@@ -2,23 +2,23 @@
 <view>
   <view class="allDetail">
     <!-- <image class="goback" bindtap="goback" src="../../image/back.png"></image> -->
-    <image class="banner" src="{{imgUrl + picture}}"></image>
-    <text class="goodsname">{{goodsname}}</text>
+    <image class="banner" src="{{imgUrl + options.img}}"></image>
+    <text class="goodsname">{{options.spec}}</text>
     <view>
-      <text class="goodsprice">￥<text class="price" bindtap="addShop">{{goodsprice}}</text></text>
+      <text class="goodsprice">￥<text class="price" bindtap="addShop">{{options.price}}</text></text>
       <!-- <image class="shopcar" bindtap="addShopcar" src="../../image/gouwuche.png"></image>
-      <image wx:if="{{iscar == 0}}" class="shopcar" bindtap="addShopcar"></image> -->
-      <image  wx:if="{{iscar == 0}}" class="shopcar" bindtap="addShopcar" src="../../image/gouwuche.png"></image>
-      <image wx:if="{{iscar == 1}}" class="shopcar" bindtap="addShopcar" src="../../image/gouwuche2.png" ></image>
+      <image wx:if="{{options.iscar == 0}}" class="shopcar" bindtap="addShopcar"></image> -->
+      <image  wx:if="{{options.iscar == 0}}" class="shopcar" bindtap="addShopcar" src="../../image/gouwuche.png"></image>
+      <image wx:if="{{options.iscar == 1}}" class="shopcar" bindtap="addShopcar" src="../../image/gouwuche2.png" ></image>
     </view>
   </view>
   <view class="detailAll">
     <view class="goodsDetail1">商品详情</view>
-    <image class="goodsDetail" src="{{imgUrl + longimg}}"></image>
+    <image class="goodsDetail" src="{{imgUrl + options.img}}"></image>
   </view> 
   <view class="navBottom">
     <image class="bottomImg" bindtap="goshopcar" src="../../image/gouwuche3.png"></image>
     <!-- <text class="fuhao">￥<text class="totalprice">{{totalprice}}</text></text> -->
-    <button bindtap="addShop"wx:if="{{iscar==0}}" class="submit">去下单</button>
+    <button bindtap="addShop"wx:if="{{options.iscar==0}}" class="submit">去下单</button>
   </view>
 </view>

@@ -26,7 +26,7 @@
           -
         </image>
         <!-- 文本框值 -->
-        <input min="1" type="number" class="view_text_center" bindinput='input_num' data-index="{{index}}" value="{{item.num}}" />
+        <input min="1" type="number" class="view_text_center" bindinput='input_num' data-index="{{index}}" value="{{item.car_num}}" />
         <!-- 加按钮 -->
         <image src="../../image/add.png" class="plus" bindtap="btn_add" data-index="{{index}}">
           +

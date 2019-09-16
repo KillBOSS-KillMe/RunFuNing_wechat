@@ -22,25 +22,23 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      options: options,
+      totalprice: app.globalData.total,
       imgUrl: app.globalData.imgUrl
     })
-    // app.globalData.total
-    this.setData({
-      picture:options.img,
-      goodsprice:options.price,
-      goodsname:options.spec,
-      longimg:options.img,
-      totalprice: app.globalData.total,
-      id:options.id,
-      iscar:options.iscar
-    })
+    // options.img,
+    // options.price,
+    // options.spec,
+    // options.img,
+    // options.id,
+    // options.iscar
   },
   //返回上一级
-  goback(){
-    wx.navigateBack({
-      delta: 1
-    })
-  },
+  // goback(){
+  //   wx.navigateBack({
+  //     delta: 1
+  //   })
+  // },
   goshopcar(){
     wx.switchTab({
       url: '../shopcar/shopcar',
@@ -48,19 +46,16 @@ Page({
   },
   addShop(e) {
     wx.request({
-      url: 'https://shu.beaconway.cn/Car/inCar',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: 'post',
+      url: `${app.globalData.requestUrl}/Car/inCar`,
+      method: 'POST',
       data: {
         uid: app.globalData.userInfo.id,
-        good_id: this.data.id,
-        spec: this.data.goodsname,
-        price: this.data.goodsprice,
-        img: this.data.picture
+        good_id: this.data.options.id,
+        spec: this.data.options.spec,
+        price: this.data.options.price,
+        img: this.data.options.img
       },
-      success: function (res) {
+      success: res => {
         wx.showModal({
           title: '提示',
           content: '加入购物车成功',
@@ -68,53 +63,4 @@ Page({
       }
     })
   },
-  
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

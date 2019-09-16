@@ -104,11 +104,8 @@ Page({
           success(res) {
             if (res.code) {
               wx.request({
-                url: 'https://shu.beaconway.cn/wxLogin',
-                method: 'post',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
+                url: `${app.globalData.requestUrl}/wxLogin`,
+                method: 'POST',
                 data: {
                   code: res.code,
                   nickname: userInfo.nickName,
@@ -117,11 +114,8 @@ Page({
                 success: function (res) {
                   app.globalData.userInfo = res.data.data
                   wx.request({
-                    url: 'https://shu.beaconway.cn/Good/goodsClass',
-                    header: {
-                      "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    method: 'post',
+                    url: `${app.globalData.requestUrl}/Good/goodsClass`,
+                    method: 'POST',
                     success: res => {
                       let typeList = res.data.data
                       let i = 0
@@ -184,11 +178,8 @@ Page({
   //封装拿到商品的函数
   getGoods(id, index) {
     wx.request({
-      url: 'https://shu.beaconway.cn/Good/goods',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: 'post',
+      url: `${app.globalData.requestUrl}/Good/goods`,
+      method: 'POST',
       data: {
         cid: id,
         page: this.data.page,
@@ -225,11 +216,8 @@ Page({
     var index = e.currentTarget.dataset.index
     var list = this.data.goodsArr
     wx.request({
-      url: 'https://shu.beaconway.cn/Car/inCar',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: 'post',
+      url: `${app.globalData.requestUrl}/Car/inCar`,
+      method: 'POST',
       data: {
         uid: app.globalData.userInfo.id,
         good_id: e.currentTarget.dataset.goodsid,
@@ -258,7 +246,7 @@ Page({
   bindMinus: function (e) {
     const index = e.currentTarget.dataset.index;
     // var num = this.data.num;
-    let num = this.data.goodsArr[index].num;
+    let num = this.data.goodsArr[index].car_num;
     console.log(this.data.goodsArr[index])
     // 如果大于1时，才可以减  
     if (num > 0) {

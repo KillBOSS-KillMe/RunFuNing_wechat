@@ -51,9 +51,6 @@ Page({
         if (res.data.code == 1) {
           var goodsList = res.data.data;
           if (goodsList.length > 0) {
-            for (let i = 0; i < goodsList.length; i++) {
-              goodsList[i]['num'] = 0
-            }
             this.setData({
               goodsArr: goodsList
             })

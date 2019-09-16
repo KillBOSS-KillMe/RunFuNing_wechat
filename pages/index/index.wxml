@@ -38,7 +38,7 @@
               <!-- 减号 -->  
               <text class="{{minusStatus}}" bindtap="bindMinus" data-index="{{index}}">-</text>  
               <!-- 数值 -->  
-              <input type="number" bindchange="bindManual" value="{{num}}" />  
+              <input type="number" bindchange="bindManual" value="{{item.car_num}}" />  
               <!-- 加号 -->  
               <text class="normal" bindtap="bindPlus" data-index="{{index}}" >+</text>  
             </view>
