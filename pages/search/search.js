@@ -15,6 +15,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      userInfo: app.globalData.userInfo,
       imgUrl: app.globalData.imgUrl
     })
   },
@@ -44,6 +45,7 @@ Page({
       url: `${app.globalData.requestUrl}/Good/search`,
       method: 'POST',
       data: {
+        uid: this.data.userInfo.id,
         info: searchName
       },
       success: res => {
@@ -68,6 +70,71 @@ Page({
             duration: 2000
           });
         }
+      }
+    })
+  },
+  
+  numDown(e) {
+    let index = e.currentTarget.dataset.index
+    let nodeAll = this.data.goodsArr
+    let node = nodeAll[index]
+    if (node.car_num == 0) {
+      return false
+    }
+    node['car_num'] = node.car_num - 1
+    nodeAll[index] = node
+    this.setData({
+      goodsArr: nodeAll
+    })
+    this.addShopcar(node)
+  },
+  numUp(e) {
+    let index = e.currentTarget.dataset.index
+    let nodeAll = this.data.goodsArr
+    let node = nodeAll[index]
+    node['car_num'] = node.car_num + 1
+    nodeAll[index] = node
+    this.setData({
+      goodsArr: nodeAll
+    })
+    this.addShopcar(node)
+  },
+  getNum(e) {
+    let index = e.currentTarget.dataset.index
+    let nodeAll = this.data.goodsArr
+    let node = nodeAll[index]
+    let num  = e.detail.value
+    node['car_num'] = num
+    nodeAll[index] = node
+    this.setData({
+      goodsArr: nodeAll
+    })
+    this.addShopcar(node)
+  },
+  // 进入搜索页面
+  goSearchPage() {
+    wx.navigateTo({
+      url: '/pages/search/search'
+    })
+  },
+  addShopcar(node){
+    wx.showToast({
+      title: '正在更改购物车数据',
+      icon: 'loading'
+    });
+    wx.request({
+      url: `${app.globalData.requestUrl}/Car/inCar`,
+      method: 'POST',
+      data: {
+        uid: app.globalData.userInfo.id,
+        goods_id: node.id,
+        num: node.car_num,
+        spec: node.spec,
+        price: node.price,
+        img: node.img,
+      },
+      success: res => {
+        wx.hideToast()
       }
     })
   }

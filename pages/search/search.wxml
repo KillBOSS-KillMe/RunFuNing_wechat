@@ -22,13 +22,13 @@
     <view style='display:{{show_edit}}'>
       <view class="carts-num">
         <!-- 减按钮 -->
-        <image src="../../image/cut.png" class="minus" bindtap="btn_minus" data-obj="{{obj}}" data-index="{{index}}" data-id="{{item.id}}">
+        <image src="../../image/cut.png" class="minus" bindtap="numDown" data-index="{{index}}">
           -
         </image>
         <!-- 文本框值 -->
-        <input min="1" type="number" class="view_text_center" bindinput='input_num' data-index="{{index}}" value="{{item.car_num}}" />
+        <input type="number" class="view_text_center" bindinput='getNum' data-index="{{index}}" value="{{item.car_num}}" />
         <!-- 加按钮 -->
-        <image src="../../image/add.png" class="plus" bindtap="btn_add" data-index="{{index}}">
+        <image src="../../image/add.png" class="plus" bindtap="numUp" data-index="{{index}}">
           +
         </image>
       </view>

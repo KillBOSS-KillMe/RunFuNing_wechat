@@ -194,7 +194,7 @@ Page({
     this.setData({
       goodsArr: nodeAll
     })
-    addShopcar(node)
+    this.addShopcar(node)
   },
   // 进入搜索页面
   goSearchPage() {
