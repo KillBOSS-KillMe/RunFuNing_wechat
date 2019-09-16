@@ -1,21 +1,14 @@
 <view>
-  <view>
-    <image class="goback" bindtap="goback" src="../../image/back.png"></image>
-  </view>
-  
-  <view class="orderNav">订单详情</view>
   <view wx:for="{{orderList}}" class="orderList">
-          <image class="ordeRimg1" bindtap="godetail" data-code="{{item.orderNum}}" src="{{item.img}}"></image>
-          <text class="spec">{{item.spec}}</text>
-          
-          <view class="heji">
-            <text class="itemNum">共{{item.num}}件商品    合计￥:</text>
-            <text class="total">{{item.price}}</text> 
-          </view>
+    <image class="ordeRimg1" bindtap="godetail" data-code="{{item.orderNum}}" src="{{imgUrl + item.img}}"></image>
+    <text class="spec">{{item.spec}}</text>
+    <view class="heji">
+      <text class="itemNum">共{{item.num}}件商品    合计￥:</text>
+      <text class="total">{{item.price}}</text>
     </view>
-    <view class="bottonNav">
-      <button class="delOrder" bindtap="delOrder">删除订单</button>  
-      <button class="confirmOrder"  wx:if="{{str!=3}}" bindtap="confirmOrder">确认收货</button>
-      
-    </view>
+  </view>
+  <view class="bottonNav">
+    <button class="delOrder" bindtap="delOrder">删除订单</button>
+    <button class="confirmOrder" wx:if="{{str!=3}}" bindtap="confirmOrder">确认收货</button>
+  </view>
 </view>

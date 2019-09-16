@@ -1,4 +1,5 @@
 // pages/order/order.js
+const app = getApp()
 Page({
 
   /**
@@ -16,18 +17,13 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      str: ''
-    })
-    this.setData({
+      imgUrl: app.globalData.imgUrl,
       str: options.str
     })
     var that = this
     wx.request({
-      url: 'https://shu.beaconway.cn/Order/order_details',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: 'post',
+      url: `${app.globalData.requestUrl}/Order/order_details`,
+      method: 'POST',
       data:{
         orderNum:options.order
       },
@@ -50,11 +46,8 @@ Page({
   confirmOrder() {
     var that = this
     wx.request({
-      url: 'https://shu.beaconway.cn/Order/receive',
-      method: 'post',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
+      url: `${app.globalData.requestUrl}/Order/receive`,
+      method: 'POST',
       data: {
         orderNum: this.data.orderNum
       },
@@ -78,11 +71,8 @@ Page({
     var that = this
     var orderList = this.data.orderList
     wx.request({
-      url: 'https://shu.beaconway.cn/Order/del_order',
-      method: 'post',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
+      url: `${app.globalData.requestUrl}/Order/del_order`,
+      method: 'POST',
       data: {
         orderNum: this.data.orderNum
       },
@@ -100,53 +90,4 @@ Page({
       }
     })
   },
-  /**
-   * 
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
