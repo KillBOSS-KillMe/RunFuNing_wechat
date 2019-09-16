@@ -1,7 +1,7 @@
 <view class="contact">
-<image src="../../image/back.png" class="backImg" bindtap="back"></image>
+<!-- <image src="../../image/back.png" class="backImg" bindtap="back"></image> -->
   <view>
-    <view class="contactUs">联系我们</view>
+    <!-- <view class="contactUs">联系我们</view> -->
     <view class="person">联 系 人：<text>{{information.name}}</text></view>
     <view class="phone">联系电话：
       <text>{{information.phone}}</text>

@@ -1,6 +1,8 @@
 /* pages/person/person.wxss */
 .personBg{
   position: relative;
+  height: 376rpx;
+
 }
 .bkImg{
   width: 100%;
@@ -29,18 +31,24 @@
   font-size: 34rpx;
 }
 .contact{
-  position: relative;
-  top: -30rpx;
-  background: white;
+  background: #fff;
   font-size: 30rpx;
   height: 100rpx;
-  font-weight: bolder;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 750rpx;
+  margin: 30rpx 0;
+  padding: 0 30rpx;
+  margin-top: -20rpx;
 }
-.contactUs{
-  position: absolute;
-  top: 30rpx;
-  left: 20rpx;
+.contact icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .detail{
   position: absolute;
   top: 37rpx;

@@ -7,7 +7,7 @@
   </view>
   <view class="contact" bindtap="goContact">
     <text class="contactUs">联系我们</text>
-    <text class="detail">></text>
+    <icon class="cuIcon-right" />
   </view>
   <view>
     <scroll-view scroll-x class="bg-white nav">
