@@ -1,0 +1,105 @@
+/* pages/detail/detail.wxss */
+.banner{
+  height: 530rpx;
+  width: 100%;
+}
+.allDetail{
+  background: white;
+  height: 730rpx;
+  position: relative;
+}
+.goback{
+  position: absolute;
+  opacity: 0.5;
+  width:60rpx;
+  height: 60rpx;
+  z-index: 999;
+}
+.goodsname{
+  /* margin-top: 50rpx; */
+  font-size: 34rpx;
+  font-weight: bolder;
+  /* margin-left: 30rpx; */
+  position: absolute;
+  top: 550rpx;
+  left: 30rpx;
+}
+.shopcar {
+  width: 68rpx;
+  height: 68rpx;
+  position: absolute;
+  right: 26rpx;
+  top: 630rpx; 
+}
+.goodsprice{
+  font-size: 26rpx;
+  color: #A1A1A1;
+  position: absolute;
+  left: 30rpx;
+  top: 650rpx;
+}
+.price{
+  color: rgb(220, 9, 9);
+  font-size: 32rpx;
+  font-weight: bolder;
+}
+.goodsDetail{
+ 
+  width: 100%;
+  font-weight: bolder;
+  background: white;
+}
+.goodsDetail1{
+  font-weight: bolder;
+  margin-left: 26rpx;
+  padding: 26rpx 0;
+  font-size: 34rpx;
+}
+.detailAll{
+
+  background: white;
+  margin-top: 20rpx;
+}
+.navBottom{
+  position: fixed;
+  bottom: 0;
+  /* position: relative; */
+  background: white;
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 100%;
+}
+.bottomImg{
+  vertical-align: middle;
+   margin-left: 26rpx;
+  width: 86rpx;
+  height: 86rpx;
+}
+.fuhao{
+  /* vertical-align: middle; */
+ margin-left: 26rpx;
+font-size: 26rpx;
+  color: #A1A1A1;
+  /* position: absolute; */
+  /* left: 30rpx; */
+  /* top: 650rpx; */
+}
+.totalprice{
+  /* vertical-align: middle; */
+  color: rgb(220, 9, 9);
+  font-size: 32rpx;
+  font-weight: bolder;
+}
+.submit{
+  position: absolute;
+  width: 200rpx;
+height: 72rpx;
+line-height: 72rpx;
+right: 34rpx;
+top: 14rpx;
+font-size: 30rpx;
+text-align: center;
+color:#fff;
+background-color:#FFB400;
+border-radius: 8rpx;
+}

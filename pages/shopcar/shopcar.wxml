@@ -1,0 +1,68 @@
+<view>
+  <cu-custom bgColor="bg-gradual-red" isBack="{{true}}">
+    <!-- <view slot="backText" bindtap="goback">返回</view> -->
+    <view slot="content">购物车</view>
+  </cu-custom>
+
+  <view class="pages">
+
+    <view wx:if="{{list.length>0}}">
+
+      <view class='edit'>
+        <text class="shopCar1">购物车</text>
+        <label class='edit_btn' bindtap='btn_edit'>清空购物车</label>
+
+      </view>
+
+      <view class="address" bindtap="goAddress" wx:if="{{hasList}}">
+        <text class="username">{{addressList.consignee}}</text>
+        <text class="phone">{{addressList.phone}}</text>
+        <view class="addressDetail">
+          {{addressList.address + addressList.shopname}}
+        </view>
+      </view>
+
+
+      <!-- 列表 -->
+      <scroll-view scroll-y style="height: 700rpx;background: white;">
+      <view class="list" wx:for="{{list}}" wx:key="{{index}}">
+        <!-- 列表标题 -->
+        <text class="list_name">{{item.spec}}</text>
+        <!-- 删除按钮 -->
+        <image src="../../image/delete1.png" class="deleteImg" data-index="{{index}}" data-id="{{item.id}}"  bindtap="delGoods"></image>
+        <!-- 列表商品图片 -->
+        <image class="list_img" src="{{item.img}}"></image>
+        <!-- 规格 -->
+        <!-- <text class="cart_g_name">规格 : {{item.spec}}</text> -->
+        <!-- 价格 -->
+        <text class="list_price">￥{{item.price}}</text>
+        <!-- 商品数量加减  style='display:{{show_edit}}'-->
+        <view style='display:{{show_edit}}'>
+          <view class="carts-num">
+            <!--减按钮  -->
+            <image src="../../image/cut.png" class="minus" bindtap="btn_minus" data-obj="{{obj}}" data-index="{{index}}" data-id="{{item.id}}">-</image>
+            <!-- 文本框值 -->
+            <input min="1"  type="number" class="view_text_center" bindinput='input_num' data-index="{{index}}" value="{{item.num}}" />
+            <!-- 加按钮-->
+            <image src="../../image/add.png" class="plus" bindtap="btn_add" data-index="{{index}}">+</image>
+          </view>
+        </view>
+      </view>
+      </scroll-view>
+      <!-- 固定底部 -->
+      <view class="cont_bot">
+        <!-- 合计金额 -->
+        <lable class="count_price">合计：
+          <text>￥{{totalPrice}}</text>
+        </lable>
+        <!-- 提交订单 -->
+        <label class='submit' bindtap='btn_submit_order'>下单</label>
+      </view>
+
+    </view>
+    <view wx:else>
+      <view class="list_none">购物车是空的哦~</view>
+    </view>
+
+  </view>
+</view>

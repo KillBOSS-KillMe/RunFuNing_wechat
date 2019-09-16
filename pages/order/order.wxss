@@ -1,0 +1,104 @@
+/* pages/order/order.wxss */
+.goback{
+  position: fixed;
+  opacity: 0.5;
+  width:60rpx;
+  height: 60rpx;
+  z-index: 999;
+  top: 50rpx;
+  left: 20rpx;
+}
+.orderNav{
+  padding: 70rpx 32rpx;
+  padding-bottom: 50rpx;
+  font-size: 34rpx;
+  font-weight: bolder;
+  background: white;
+  margin-bottom: 20rpx;
+  margin-top: 20px;
+}
+.ordeRimg1{
+  margin-left: 26rpx;
+  margin-top: 26rpx;
+  border-radius: 5rpx;
+  width: 136rpx;
+  height: 136rpx;
+  margin-bottom: 26rpx;
+}
+.allList{
+  background: white;
+}
+.orderList{
+  position: relative;
+  border: 1rpx solid #F0F0F0;
+  background: white;
+}
+.spec{
+  position: absolute;
+  top: 30rpx;
+  left: 170rpx;
+  font-weight: bolder;
+}
+.heji{
+  position: absolute;
+  left: 170rpx;
+  top: 126rpx;
+}
+.itemNum{
+  font-size: 26rpx;
+}
+.total{
+  font-weight: bolder
+}
+.daifahuo{
+  position: absolute;
+  right: 30rpx;
+  bottom: 0rpx;
+  color: #7e7e7e;
+}
+.conFirm{
+  position: absolute;
+  right: 30rpx;
+  bottom: 0rpx;
+  color: #7e7e7e;
+}
+.shouhou{
+  position: absolute;
+  right: 10rpx;
+  top: 50rpx;
+}
+.bottonNav{
+  height: 100rpx;
+  background: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%
+}
+.delOrder{
+  position: absolute;
+  display: inline-block;
+  background: white;
+  color: #A1A1A1;
+  border: 1rpx solid #A1A1A1;
+  width: 146rpx;
+  height: 60rpx;
+  font-size: 26rpx;
+  right: 190rpx;
+  top: 22rpx;
+  padding: 0;
+  line-height: 60rpx;
+}
+.confirmOrder{
+  line-height: 60rpx;
+  position: absolute;
+  display: inline-block;
+  background: white;
+  color: #FFB400;
+  border: 1rpx solid #FFB400;
+   width: 146rpx;
+  height: 60rpx;
+  right: 26rpx;
+  top: 22rpx;
+  font-size: 26rpx;
+  padding: 0;
+}

@@ -1,0 +1,29 @@
+/* pages/contact/contact.wxss */
+page{
+ background: white;
+}
+.contact{
+ 
+  margin-left: 30rpx;
+}
+.contactUs{
+  font-size: 34rpx;
+  margin-top: 92rpx;
+  font-weight: bolder;
+}
+.person,.phone,.nowTime,.address{
+  margin-top: 32rpx;
+  color: #A1A1A1
+}
+.dingwei{
+  width: 26rpx;
+  height: 30rpx;
+  position: absolute;
+  right: 26rpx;
+}
+.backImg{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 40rpx
+}

@@ -1,0 +1,204 @@
+page {
+  background: #fff;
+  font-family: 'PingFang-SC-Heavy'
+}
+
+#getUserInfo {
+  /* position: fixed; 
+ top: 0; 
+ left: 0; 
+ bottom: 0; 
+ right: 0; 
+ opacity: 0; 
+ z-index: 999;  */
+  background: rgb(255, 187, 24);
+  color: white;
+  width: 70%;
+  margin-top: 300rpx;
+}
+
+.serchwrap {
+  width: 93%;
+  height: 36px;
+  border-radius: 18px;
+  background: #f0f0f0;
+  margin: 5px auto;
+}
+/*  */
+.swiper_box {
+  height: auto;
+  position: relative;
+}
+ 
+.swipers {
+  height: 450rpx;
+}
+ 
+.swiper_box image {
+  width: 100%;
+  height: 100%;
+}
+/*  */
+.VerticalBox{
+  width: 100%;
+  height: auto;
+}
+.VerticalNav.nav {
+  float: left;
+  width: 200rpx;
+  height: 100%;
+  /* white-space: initial; */
+  background: red;
+}
+
+.VerticalNav.nav .cu-item {
+  /* width: 100%; */
+  background-color: #f5f5f5;
+  margin: 0;
+  border: none;
+  height: 50px;
+  /* position: relative; */
+  display: flex;
+  justify-content: flex-start;
+  font-size: 14px;
+  color: #7E7E7E;
+  font-weight: bold;
+
+}
+
+.VerticalNav.nav .cu-item.cur {
+  background-color: #ffb400;
+  color: #1F1501;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 3px;
+}
+
+/* .VerticalNav.nav .cu-item.cur::after {
+  content: "";
+  width: 8rpx;
+  height: 30rpx;
+  border-radius: 10rpx 0 0 10rpx;
+  position: absolute;
+  background-color: red;
+  top: 0;
+  right: 0rpx;
+  bottom: 0;
+  margin: auto;
+} */
+
+.VerticalMain {
+  float: left;
+  width: 73%;
+  height: auto;
+  background-color: #f1f1f1;
+}
+
+.item {
+  height: 18vh;
+  background: #fff;
+  border-bottom: 1px solid #f1f1f1;
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  background: pink;
+}
+
+.item > image {
+  /* float: left; */
+  width: 93px;
+  height: 93px;
+  margin-top: 3%;
+  margin-left: 3%;
+  background: pink;
+}
+
+.content-R {
+  width: 80%;
+  /* float: left;
+  width: 46%;
+  margin-top: 4%;
+  margin-left: 3%; */
+}
+
+.goodsName {
+  margin-top: 4%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  color: #1F1501;
+  font-weight: bold;
+  background: palegreen;
+  width: 90%;
+  height: 45px;
+  margin: 5% 3% 0;
+}
+.goodstag{
+   color: #7E7E7E;
+  font-size: 10px;
+  margin: 3% 5% 3%;
+}
+.content-R > .pricewrap {
+  /* margin-top: 8vh; */
+  color: #7E7E7E;
+  font-size: 10px;
+  margin: 0% 5% 0%;
+}
+.content-R > .pricewrap  > text{
+  color: #DC0909;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.shopcar {
+  position: absolute;
+  width: 48rpx;
+  height: 48rpx;
+  top: 140rpx;
+  right: 26rpx;
+}
+/*主容器*/  
+.stepper {  
+    width: 80px;  
+    height: 26px;  
+    /*给主容器设一个边框*/  
+    border: 1px solid #ccc;  
+    border-radius: 3px;  
+    /* margin:0 auto;   */
+    background: red;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}  
+  
+/*加号和减号*/  
+.stepper text {  
+    width: 19px;  
+    line-height: 26px;  
+    text-align: center;  
+    float: left;  
+}  
+  
+/*数值*/  
+.stepper input {  
+    width: 40px;  
+    height: 26px;  
+    float: left;  
+    margin: 0 auto;  
+    text-align: center;  
+    font-size: 12px;  
+    /*给中间的input设置左右边框即可*/  
+    border-left: 1px solid #ccc;  
+    border-right: 1px solid #ccc;  
+}  
+  
+/*普通样式*/  
+.stepper .normal{  
+    color: black;  
+}  
+  
+/*禁用样式*/  
+.stepper .disabled{  
+    color: #ccc;  
+}  

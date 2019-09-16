@@ -1,0 +1,11 @@
+<view class="address">
+  <view class="newAddress">
+    新建地址
+  </view>
+  <input bindinput="talks_1" value="{{consignee}}"></input>
+  <input bindinput="talks_2" value="{{phone}}"></input>
+  <input bindinput="talks_3" value="{{shopname}}"></input>
+  <input bindinput="talks_4" value="{{shopcar}}"></input>
+
+  <button bindtap="changeAddress">修改</button>
+</view>

@@ -1,0 +1,33 @@
+/* pages/address/address.wxss */
+page{
+  background: white;
+}
+.address{
+  margin-left: 26rpx;
+  margin-top: 70rpx;
+}
+.newAddress{
+  font-weight: bolder;
+  font-size: 34rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+input{
+  font-size: 26rpx;
+  /* padding: 30rpx; */
+  height: 100rpx;
+
+  border-bottom: 1rpx solid #F0F0F0;
+}
+button{
+  width: 262rpx;
+  height: 72rpx;
+  color: white;
+  line-height: 72rpx;
+  background: #FFB400;
+  border-radius: 8rpx;
+  font-size: 30rpx;
+  position: absolute;
+  bottom: 200rpx;
+  left: 32%;
+}

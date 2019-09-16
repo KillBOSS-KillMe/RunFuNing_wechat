@@ -1,0 +1,77 @@
+<!--pages/person/person.wxml-->
+<view>
+  <view class="personBg">
+    <image class="bkImg" src="../../image/beijing.png"></image>
+    <image class="headImg" src="{{userInfo.avatarUrl}}"></image>
+    <view class="username">{{userInfo.nickname}}</view>
+  </view>
+  <view class="contact" bindtap="goContact">
+    <text class="contactUs">联系我们</text>
+    <text class="detail">></text>
+  </view>
+  <view>
+    <scroll-view scroll-x class="bg-white nav">
+      <view class="flex text-center">
+        <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{navList}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+          <image class="orderImg" src="{{item.img}}"></image>
+          <text class="order">{{item.order}}</text>
+        </view>
+      </view>
+    </scroll-view>
+    <!-- 地址列表 -->
+    <scroll-view scroll-y style="height: 650rpx;background: white;" wx:if="{{isShow}}">
+      <view class="allAddress">
+        <view wx:for="{{addressList}}" wx:key class="addressList">
+          <view class="change">
+            <text class="nickname">姓名：</text>
+            <text class="bolder">{{item.consignee}}</text>
+            <image catchtap='open_tap' wx:if="{{item.is_default==1}}" src="../../image/moren1.png" class="coding_flash_image1" data-id="{{item.id}}" data-index="{{index}}"></image>
+
+            <image wx:if="{{item.is_default==0}}" catchtap='open_tap' src='../../image/moren.png' class="coding_flash_image1" data-id="{{item.id}}" data-index="{{index}}"></image>
+            <image class="edit" src="../../image/bianji.png" bindtap="edit" data-consignee="{{item.consignee}}" data-phone="{{item.phone}}" data-shopcar="{{item.address}}" data-shopname="{{item.shopname}}" data-id="{{item.id}}"></image>
+            <image bindtap="delAddress" data-id="{{item.id}}" data-index="{{index}}" class="deleteImg" src="../../image/delete1.png"></image>
+
+          </view>
+          <view class="change">
+            <text class="nickname">电话：</text>
+            <text class="bolder">{{item.phone}}</text>
+          </view>
+          <view class="change">
+            <text class="nickname">地址：</text>
+            <text class="bolder">{{item.address}}</text>
+          </view>
+          
+        </view>
+<navigator url="../address/address">
+            <button class="newAddress">新建地址</button>
+          </navigator>
+      </view>
+
+    </scroll-view>
+    <!-- 我的订单 -->
+  <scroll-view wx:if="{{!isShow}}"> 
+      <view class="allList">
+        <view wx:for="{{orderList}}" class="orderList">
+          <image class="ordeRimg1" bindtap="godetail" data-status="{{item.status}}" data-code="{{item.orderNum}}" src="{{item.goods[0].img}}"></image>
+          <view class="createTime">{{item.createTime}}</view>
+          <text class="spec">{{item.goods[0].spec}}</text>
+          
+          <view class="heji">
+            <text class="itemNum">共{{item.num}}件商品    合计￥:      </text>
+            <text class="total">{{item.total}}</text> </view>
+            <image class="coding_flash_image" bindtap="delOrder" src="../../image/delete1.png" data-order="{{item.orderNum}}" data-index="{{index}}"></image>
+            <text class="daifahuo" data-order="{{item.orderNum}}" wx:if="{{item.status==2}}" bindtap="orderConfirm">确认收货</text>
+            <text class="daifahuo" wx:if="{{item.status==1}}">待发货</text>
+            <text class="daifahuo" wx:if="{{item.status==3}}" data-order="{{item.orderNum}}" data-status="{{item.status}}">已收货</text>
+            <text class="shouhou" wx:if="{{item.status!=4}}" data-order="{{item.orderNum}}" data-status="{{item.status}}" bindtap="shouhou">申请售后</text>
+        </view>
+      </view>
+
+
+    </scroll-view>
+
+
+  </view>
+
+
+</view>

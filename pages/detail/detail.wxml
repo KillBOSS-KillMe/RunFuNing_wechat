@@ -1,0 +1,24 @@
+<!--pages/detail/detail.wxml-->
+<view>
+  <view class="allDetail">
+    <image class="goback" bindtap="goback" src="../../image/back.png"></image>
+    <image class="banner" src="{{picture}}"></image>
+    <text class="goodsname">{{goodsname}}</text>
+    <view>
+      <text class="goodsprice">￥<text class="price" bindtap="addShop">{{goodsprice}}</text></text>
+      <!-- <image class="shopcar" bindtap="addShopcar" src="../../image/gouwuche.png"></image>
+      <image wx:if="{{iscar == 0}}" class="shopcar" bindtap="addShopcar"></image> -->
+      <image  wx:if="{{iscar == 0}}" class="shopcar" bindtap="addShopcar" src="../../image/gouwuche.png" data-iscar="{{item.is_car}}" data-goodsid="{{item.id}}" data-price="{{item.price}}" data-index="{{index}}" data-spec="{{item.spec}}" data-img="{{item.img}}"></image>
+          <image wx:if="{{iscar == 1}}" class="shopcar" bindtap="addShopcar"  data-is_car="{{item.is_car}}" src="../../image/gouwuche2.png" ></image>
+    </view>
+  </view>
+  <view class="detailAll">
+    <view class="goodsDetail1">商品详情</view>
+    <image class="goodsDetail" src="{{longimg}}"></image>
+  </view> 
+  <view class="navBottom">
+    <image class="bottomImg" bindtap="goshopcar" src="../../image/gouwuche3.png"></image>
+    <!-- <text class="fuhao">￥<text class="totalprice">{{totalprice}}</text></text> -->
+    <button bindtap="addShop"wx:if="{{iscar==0}}" class="submit">去下单</button>
+  </view>
+</view>

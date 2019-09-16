@@ -1,0 +1,55 @@
+<view class=''>
+  <view class='serchwrap'>
+
+  </view>
+  <!-- 轮播 -->
+    <!--重置小圆点的样式 -->
+  <view class='swiper_box'>
+    <swiper class='swipers' autoplay="true" indicator-dots="true" indicator-color="{{indicatorColor}}" 
+    indicator-active-color="{{indicatorActivecolor}}">
+      <block wx:for="{{swiperList}}" wx:key>
+        <swiper-item>
+          <image class="swiper_image" src="{{item}}" lazy-load="true" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!--  -->
+  <!--  -->
+  <view class="VerticalBox" wx:if="{{!userInfoButtonShow}}">
+    <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}">
+      <view class="cu-item {{index==TabCur?'cur':''}}" wx:for="{{navList}}" wx:key bindtap='tabSelect' data-index="{{index}}" data-cid="{{item.id}}">
+        {{item.class}}
+      </view>
+    </scroll-view>
+
+    <scroll-view class="VerticalMain" scroll-y scroll-with-animation scroll-into-view="main-{{MainCur}}">
+      <view wx:for="{{goodsArr}}" data-idx="{{item.id}}" wx:key>
+        <view class="item"  data-img="{{item.img}}" data-iscar="{{item.is_car}}" data-price="{{item.price}}" data-spec="{{item.spec}}" data-id="{{item.id}}" data-longimg="{{item.longimg}}" data-index="{{index}}">
+        <!-- bindtap='detail' -->
+          <image  src="{{item.img}}" ></image>
+          <view class="content-R">
+            <view class="goodsName">{{item.spec}}</view>
+            <view class="goodstag">剩余</view>
+            <view class='pricewrap'>￥<text>{{item.price}}</text></view>
+            <view class="stepper">  
+              <!-- 减号 -->  
+              <text class="{{minusStatus}}" bindtap="bindMinus" data-index="{{index}}">-</text>  
+              <!-- 数值 -->  
+              <input type="number" bindchange="bindManual" value="{{num}}" />  
+              <!-- 加号 -->  
+              <text class="normal" bindtap="bindPlus" data-index="{{index}}" >+</text>  
+            </view>
+            <!-- <image wx:if="{{item.is_car == 0}}" class="shopcar" bindtap="addShopcar" src="../../image/gouwuche.png" data-iscar="{{item.is_car}}" data-goodsid="{{item.id}}" data-price="{{item.price}}" data-index="{{index}}" data-spec="{{item.spec}}" data-img="{{item.img}}"></image>
+            <image wx:if="{{item.is_car == 1}}" class="shopcar" bindtap="addShopcar" data-is_car="{{item.is_car}}" src="../../image/gouwuche2.png"></image> -->
+            <!-- 主容器 -->  
+            
+            <!--  -->
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+  </view>
+  <button open-type="getUserInfo" id='getUserInfo' wx:if="{{userInfoButtonShow}}" lang="zh_CN" bindgetuserinfo="getUserInfo">请先授权</button>
+</view>

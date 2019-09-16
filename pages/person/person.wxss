@@ -1,0 +1,170 @@
+/* pages/person/person.wxss */
+.personBg{
+  position: relative;
+}
+.bkImg{
+  width: 100%;
+  height: 376rpx;
+  /* margin-top: 40rpx; */
+}
+.headImg{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  position: absolute;
+  left: 316rpx;
+  top: 79rpx;
+}
+.username{
+  /* position: absolute;
+  left: 38%;
+  top: 203rpx; */
+  /* font-weight: bolder; */
+  /* margin-bottom: 100rpx; */
+  position: absolute;
+  top: 220rpx;
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+  font-size: 34rpx;
+}
+.contact{
+  position: relative;
+  top: -30rpx;
+  background: white;
+  font-size: 30rpx;
+  height: 100rpx;
+  font-weight: bolder;
+}
+.contactUs{
+  position: absolute;
+  top: 30rpx;
+  left: 20rpx;
+}
+.detail{
+  position: absolute;
+  top: 37rpx;
+  right: 20rpx;
+}
+.orderImg{
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  
+}
+.order{
+  vertical-align: middle;
+  margin-left: 10rpx;
+}
+.newAddress{
+  width: 262rpx;
+  height: 72rpx;
+  color: white;
+  line-height: 72rpx;
+  background: #FFB400;
+  border-radius: 8rpx;
+  font-size: 30rpx;
+  position: fixed;
+  bottom: 20rpx;
+  left: 32%;
+}
+.nickname{
+  color: #A1A1A1;
+  font-size: 26rpx;
+  margin-right: 26rpx;
+}
+.bolder{
+  font-size: 26rpx;
+  font-weight: bolder
+}
+.addressList{
+  border-bottom: 1rpx solid #F0F0F0;
+  position: relative;
+}
+.change{
+ margin: 30rpx 0;
+ margin-left: 26rpx;
+}
+.deleteImg{
+  width: 34rpx;
+  height: 32rpx;
+  position: absolute;
+  right: 26rpx
+}
+.coding_flash_image{
+  width:30rpx;
+  height:30rpx;
+  position: absolute;
+  right: 32rpx;
+  top: 32rpx;
+}
+.edit{
+  width:30rpx;
+  height:30rpx;
+  position: absolute;
+  right: 76rpx;
+  /* top: -12rpx; */
+}
+.ordeRimg1{
+  margin-left: 26rpx;
+  margin-top: 26rpx;
+  border-radius: 5rpx;
+  width: 136rpx;
+  height: 136rpx;
+  margin-bottom: 26rpx;
+}
+.allList{
+  background: white;
+}
+.orderList{
+  position: relative;
+  border: 1rpx solid #F0F0F0;
+}
+.spec{
+  position: absolute;
+  top: 30rpx;
+  left: 170rpx;
+  font-weight: bolder;
+}
+.heji{
+  position: absolute;
+  left: 170rpx;
+  top: 126rpx;
+}
+.itemNum{
+  font-size: 20rpx;
+}
+.total{
+  font-weight: bolder
+}
+.daifahuo{
+  position: absolute;
+  right: 26rpx;
+  bottom: 5rpx;
+  color: #7e7e7e;
+}
+.conFirm{
+  position: absolute;
+  right: 30rpx;
+  bottom: 0rpx;
+  color: #7e7e7e;
+}
+.shouhou{
+  position: absolute;
+  right: 10rpx;
+  top: 80rpx;
+}
+.coding_flash_image1{
+  width:50rpx;
+  height:50rpx;
+  position: absolute;
+  right: 126rpx;
+  top: -10rpx;
+}
+.createTime{
+  position: absolute;
+  left: 170rpx;
+  top: 80rpx;
+  font-size: 24rpx;
+  color: #a1a1a1;
+}
