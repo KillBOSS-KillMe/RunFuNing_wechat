@@ -203,19 +203,23 @@ Page({
     })
   },
   addShopcar(node){
-    console.log(node)
+    wx.showToast({
+      title: '正在更改购物车数据',
+      icon: 'loading'
+    });
     wx.request({
       url: `${app.globalData.requestUrl}/Car/inCar`,
       method: 'POST',
       data: {
         uid: app.globalData.userInfo.id,
         goods_id: node.id,
-        car_num: node.car_num,
+        num: node.car_num,
         spec: node.spec,
         price: node.price,
         img: node.img,
       },
       success: res => {
+        wx.hideToast()
       }
     })
   }

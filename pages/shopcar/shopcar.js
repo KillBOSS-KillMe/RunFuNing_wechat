@@ -18,24 +18,24 @@ Page({
   onLoad() {
   },
   onHide(){
-    let list = this.data.list
-    let data = []
-    let i = 0
-    for (i in list) {
-      data.push({ "id": list[i].id, "num": list[i].num})
-    }
-    wx.request({
-      url: 'https://shu.beaconway.cn/Car/updateCar',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: 'post',
-      data: {
-        update: JSON.stringify(data)
-      },
-      success:res=>{
-      }
-    })
+    // let list = this.data.list
+    // let data = []
+    // let i = 0
+    // for (i in list) {
+    //   data.push({ "id": list[i].id, "num": list[i].num})
+    // }
+    // wx.request({
+    //   url: `${app.globalData.requestUrl}/Car/updateCar`,
+    //   header: {
+    //     "Content-Type": "application/x-www-form-urlencoded"
+    //   },
+    //   method: 'POST',
+    //   data: {
+    //     update: JSON.stringify(data)
+    //   },
+    //   success:res=>{
+    //   }
+    // })
   },
   goback(){
     wx.navigateBack({
@@ -45,11 +45,8 @@ Page({
   onShow() {
     var that = this;
     wx.request({
-      url: 'https://shu.beaconway.cn/Car/Car',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: 'post',
+      url: `${app.globalData.requestUrl}/Car/Car`,
+      method: 'POST',
       data: {
         uid: app.globalData.userInfo.id
       },
@@ -74,11 +71,8 @@ Page({
     
     app.globalData.total = this.data.totalPrice
     wx.request({
-      url: 'https://shu.beaconway.cn/defaultAddress',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: 'post',
+      url: `${app.globalData.requestUrl}/defaultAddress`,
+      method: 'POST',
       data: {
         uid: app.globalData.userInfo.id
       },
@@ -106,11 +100,8 @@ Page({
           list.splice(index, 1);
           // 后台删除
           wx.request({
-            url: 'https://shu.beaconway.cn/Car/outCar',
-            header: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            },
-            method: 'post',
+            url: `${app.globalData.requestUrl}/Car/outCar`,
+            method: 'POST',
             data: {
               id: e.currentTarget.dataset.id
             },
@@ -154,11 +145,8 @@ Page({
         var list = that.data.list;
         if (res.confirm) {
           wx.request({
-            url: 'https://shu.beaconway.cn/Car/cleanCar',
-            header: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            },
-            method: 'post',
+            url: `${app.globalData.requestUrl}/Car/cleanCar`,
+            method: 'POST',
             data: {
               uid: app.globalData.userInfo.id
             },
@@ -252,19 +240,13 @@ Page({
     var goodsArr = JSON.stringify(this.data.list)
     var upData = { "uid": app.globalData.userInfo.id, "aid": this.data.addressid, "car": goodsArr }
     wx.request({
-      url: 'https://shu.beaconway.cn/Order/placeOrder',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: 'post',
+      url: `${app.globalData.requestUrl}/Order/placeOrder`,
+      method: 'POST',
       data: upData,
       success: function (res) {
         wx.request({
-          url: 'https://shu.beaconway.cn/Car/cleanCar',
-          header: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          method: 'post',
+          url: `${app.globalData.requestUrl}/Car/cleanCar`,
+          method: 'POST',
           data: {
             uid: app.globalData.userInfo.id
           },
