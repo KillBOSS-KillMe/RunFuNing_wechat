@@ -9,13 +9,17 @@ Page({
     // 默认展示数据
     hasList: true,
     // 金额
-    totalPrice: [], // 总价，初始为0
+    priceAll: 0, // 总价，初始为0
     // 全选状态
     selectAllStatus: false, // 全选状态，默认全选
     addressList: [],
-    addressid:[]
+    addressid:[],
+    imgUrl: ''
   },
   onLoad() {
+    this.setData({
+      imgUrl: app.globalData.imgUrl
+    })
   },
   onHide(){
     // let list = this.data.list
@@ -177,63 +181,8 @@ Page({
       }
     })
   },
-  // 删除
-  deletes: function (e) {
-
-  },
 
 
-
-
-
-  /**
-   * 绑定加数量事件
-   */
-  btn_add(e) {
-    // 获取点击的索引
-    const index = e.currentTarget.dataset.index;
-    // 获取商品数据
-    let list = this.data.list;
-    // 获取商品数量
-    let num = this.data.list[index].num;
-    // 点击递增
-    num++;
-    list[index].num = num;
-    // 重新渲染 ---显示新的数量
-    this.setData({
-      list: list
-    })
-    // 计算金额方法
-    this.count_price();
-    app.globalData.total = this.data.totalPrice
-  },
-  /**
-   * 绑定减数量事件
-   */
-  total() {
-    app.globalData.total = this.data.totalPrice
-  },
-  btn_minus(e) {
-    //   // 获取点击的索引
-    const index = e.currentTarget.dataset.index;
-    // 获取商品数据
-    let list = this.data.list;
-    // 获取商品数量
-    let num = list[index].num;
-    if (num == 1) {
-      return false
-    }
-    // else  num大于1  点击减按钮  数量--
-    num = num - 1;
-    list[index].num = num;
-    // 渲染页面
-    this.setData({
-      list: list
-    });
-    // 调用计算金额方法
-    this.count_price();
-    app.globalData.total = this.data.totalPrice
-  },
   // 提交订单
   btn_submit_order: function () {
     var that = this
@@ -280,17 +229,78 @@ Page({
     // 获取商品列表数据
     let list = this.data.list;
     // 声明一个变量接收数组列表price
-    let total = 0;
+    let priceAll = 0;
     // 循环列表得到每个数据
     for (let i = 0; i < list.length; i++) {
       // 所有价格加起来 count_money
-      total += list[i].num * Number(list[i].price);
+      priceAll += list[i].num * Number(list[i].price);
     }
-    app.globalData.total = total
     // 最后赋值到data中渲染到页面
     this.setData({
-      list: list,
-      totalPrice: total.toFixed(2)
+      priceAll: priceAll.toFixed(2)
     });
+  },
+
+  // 减号
+  numDown(e) {
+    let index = e.currentTarget.dataset.index
+    let nodeAll = this.data.list
+    let node = nodeAll[index]
+    if (node.num == 0) {
+      return false
+    }
+    node['num'] = node.num - 1
+    nodeAll[index] = node
+    this.setData({
+      list: nodeAll
+    })
+    this.addShopcar(node)
+    count_price()
+  },
+  numUp(e) {
+    let index = e.currentTarget.dataset.index
+    let nodeAll = this.data.list
+    let node = nodeAll[index]
+    node['num'] = node.num + 1
+    nodeAll[index] = node
+    this.setData({
+      list: nodeAll
+    })
+    this.addShopcar(node)
+    count_price()
+  },
+  getNum(e) {
+    let index = e.currentTarget.dataset.index
+    let nodeAll = this.data.list
+    let node = nodeAll[index]
+    let num  = e.detail.value
+    node['num'] = num
+    nodeAll[index] = node
+    this.setData({
+      list: nodeAll
+    })
+    addShopcar(node)
+    count_price()
+  },
+  addShopcar(node){
+    wx.showToast({
+      title: '正在更改购物车数据',
+      icon: 'loading'
+    });
+    wx.request({
+      url: `${app.globalData.requestUrl}/Car/inCar`,
+      method: 'POST',
+      data: {
+        uid: app.globalData.userInfo.id,
+        goods_id: node.id,
+        num: node.num,
+        spec: node.spec,
+        price: node.price,
+        img: node.img,
+      },
+      success: res => {
+        wx.hideToast()
+      }
+    })
   }
 })
