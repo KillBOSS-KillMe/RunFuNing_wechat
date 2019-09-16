@@ -14,7 +14,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      imgUrl: app.globalData.imgUrl
+    })
+  },
+  detail(e) {
+    let index = e.currentTarget.dataset.index
+    let node = this.data.goodsArr[index]
+    let data = `longimg=${node.longimg}&id=${node.id}&img=${node.img}&price=${node.price}&spec=${node.spec}&iscar=${node.iscar}`
+    wx.navigateTo({
+      url: `/pages/detail/detail?${data}`
+    })
   },
   getSearchNum(e) {
     this.setData({
@@ -31,7 +41,7 @@ Page({
       return false
     }
     wx.request({
-      url: `http://shu.beaconway.cn/Good/search`,
+      url: `${app.globalData.requestUrl}/Good/search`,
       method: 'POST',
       data: {
         info: searchName
@@ -45,7 +55,7 @@ Page({
               goodsList[i]['num'] = 0
             }
             this.setData({
-              list: goodsList
+              goodsArr: goodsList
             })
           } else {
             wx.showToast({

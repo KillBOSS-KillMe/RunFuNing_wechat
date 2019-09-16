@@ -3,14 +3,14 @@
   <input type="text" placeholder="请输入搜索内容" value="{{searchName}}" bindinput="getSearchNum"/>
   <icon class="cuIcon-search" bindtap="runSearch" />
 </view>
-<block wx:for="{{list}}" wx:key="{{index}}">
+<block wx:for="{{goodsArr}}" wx:key="{{index}}">
   <view class="list">
     <!-- 列表标题 -->
-    <text class="list_name">{{item.spec}}</text>
+    <text class="list_name" bindtap='detail' data-index="{{index}}">{{item.spec}}</text>
     <!-- 删除按钮 -->
     <!-- <image src="../../image/delete1.png" class="deleteImg" data-index="{{index}}" data-id="{{item.id}}" bindtap="delGoods"></image> -->
     <!-- 列表商品图片 -->
-    <image class="list_img" src="{{item.img}}"></image>
+    <image class="list_img" src="{{imgUrl + item.img}}" bindtap='detail' data-index="{{index}}"></image>
     <!-- 规格 -->
     <!-- <text class="cart_g_name">规格 : {{item.spec}}</text> -->
     <!-- 价格 -->
@@ -35,4 +35,4 @@
     </view>
   </view>
 </block>
-<view wx:if="{{list.length <= 0}}" class="listNone">暂无列表</view>
+<view wx:if="{{goodsArr.length <= 0}}" class="listNone">暂无列表</view>

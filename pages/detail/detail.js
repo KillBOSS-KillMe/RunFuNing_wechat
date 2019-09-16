@@ -13,14 +13,18 @@ Page({
     longimg:[],
     totalprice:0.00,
     id:[],
-    iscar:''
+    iscar:'',
+    imgUrl: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.globalData.total
+    this.setData({
+      imgUrl: app.globalData.imgUrl
+    })
+    // app.globalData.total
     this.setData({
       picture:options.img,
       goodsprice:options.price,

@@ -19,7 +19,7 @@ Page({
     goodsArr: [],
     isShow: false,
     allGoods: [],
-
+    imgUrl: '',
     url: "../../image/moren.png",
 
     iShow: true,
@@ -36,7 +36,9 @@ Page({
     })
   },
   onLoad: function () {
-    
+    this.setData({
+      imgUrl: app.globalData.imgUrl
+    })
     var that = this
     wx.request({
       url: 'https://shu.beaconway.cn/banner_show',
@@ -153,8 +155,12 @@ Page({
     })
   },
   detail(e) {
+    let index = e.currentTarget.dataset.index
+    let node = this.data.goodsArr[index]
+    console.log(node)
+    let data = `longimg=${node.longimg}&id=${node.id}&img=${node.img}&price=${node.price}&spec=${node.spec}&iscar=${node.iscar}`
     wx.navigateTo({
-      url: '../detail/detail?longimg=' + e.currentTarget.dataset.longimg + '&id=' + e.currentTarget.dataset.id + '&img=' + e.currentTarget.dataset.img + '&price=' + e.currentTarget.dataset.price + '&spec=' + e.currentTarget.dataset.spec + '&iscar=' + e.currentTarget.dataset.iscar,
+      url: `/pages/detail/detail?${data}`
     })
   },
   //选择
@@ -191,11 +197,6 @@ Page({
       success: res => {
         var i = 0
         var goodsArr = res.data.data
-        console.log(goodsArr)
-        //循环加入数据
-        for (i in goodsArr) {
-          goodsArr[i]['img'] = 'https://shu.beaconway.cn' + goodsArr[i].img
-        }
         let allGoods = this.data.allGoods
         allGoods[index] = goodsArr
         this.setData({

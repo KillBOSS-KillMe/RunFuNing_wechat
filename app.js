@@ -45,6 +45,8 @@ App({
     userInfo: null,
     total:'',
     goodsNum:'',
-    address:''
+    address:'',
+    requestUrl: 'http://shu.beaconway.cn',
+    imgUrl: 'http://shu.beaconway.cn',
   }
 })
