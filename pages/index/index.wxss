@@ -1,20 +1,16 @@
 page {
   background: #fff;
-  font-family: 'PingFang-SC-Heavy'
+  font-family: 'PingFang-SC-Heavy';
 }
 
 #getUserInfo {
-  /* position: fixed; 
- top: 0; 
- left: 0; 
- bottom: 0; 
- right: 0; 
- opacity: 0; 
- z-index: 999;  */
-  background: rgb(255, 187, 24);
-  color: white;
-  width: 70%;
-  margin-top: 300rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  z-index: 999;
 }
 
 .serchwrap {
@@ -47,17 +43,17 @@ page {
   float: left;
   width: 200rpx;
   height: 100%;
-  /* white-space: initial; */
+  /* white-space: initial*/
   background: red;
 }
 
 .VerticalNav.nav .cu-item {
-  /* width: 100%; */
+  /* width: 100%*/
   background-color: #f5f5f5;
   margin: 0;
   border: none;
   height: 50px;
-  /* position: relative; */
+  /* position: relative*/
   display: flex;
   justify-content: flex-start;
   font-size: 14px;
@@ -101,16 +97,14 @@ page {
   position: relative;
   display: flex;
   flex-wrap: nowrap;
-  background: pink;
 }
 
 .item > image {
-  /* float: left; */
+  /* float: left*/
   width: 93px;
   height: 93px;
   margin-top: 3%;
   margin-left: 3%;
-  background: pink;
 }
 
 .content-R {
@@ -118,7 +112,7 @@ page {
   /* float: left;
   width: 46%;
   margin-top: 4%;
-  margin-left: 3%; */
+  margin-left: 3%*/
 }
 
 .goodsName {
@@ -129,7 +123,6 @@ page {
   font-size: 16px;
   color: #1F1501;
   font-weight: bold;
-  background: palegreen;
   width: 90%;
   height: 45px;
   margin: 5% 3% 0;
@@ -140,7 +133,7 @@ page {
   margin: 3% 5% 3%;
 }
 .content-R > .pricewrap {
-  /* margin-top: 8vh; */
+  /* margin-top: 8vh*/
   color: #7E7E7E;
   font-size: 10px;
   margin: 0% 5% 0%;
@@ -160,13 +153,11 @@ page {
 }
 /*主容器*/  
 .stepper {  
-    width: 80px;  
-    height: 26px;  
-    /*给主容器设一个边框*/  
-    border: 1px solid #ccc;  
-    border-radius: 3px;  
-    /* margin:0 auto;   */
-    background: red;
+    width: 80px;
+    height: 26px;
+    /*给主容器设一个边框*/
+    border: 1px solid #ccc;
+    border-radius: 3px;
     position: absolute;
     bottom: 0;
     right: 0;
@@ -174,31 +165,68 @@ page {
   
 /*加号和减号*/  
 .stepper text {  
-    width: 19px;  
-    line-height: 26px;  
-    text-align: center;  
-    float: left;  
+    width: 19px;
+    line-height: 26px;
+    text-align: center;
+    float: left;
 }  
   
 /*数值*/  
 .stepper input {  
-    width: 40px;  
-    height: 26px;  
-    float: left;  
-    margin: 0 auto;  
-    text-align: center;  
-    font-size: 12px;  
-    /*给中间的input设置左右边框即可*/  
-    border-left: 1px solid #ccc;  
-    border-right: 1px solid #ccc;  
+  width: 40px;
+  height: 26px;
+  float: left;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 12px;
+  /*给中间的input设置左右边框即可*/
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
 }  
   
-/*普通样式*/  
-.stepper .normal{  
-    color: black;  
+/*普通样式*/
+.stepper .normal{
+    color: black;
 }  
   
-/*禁用样式*/  
-.stepper .disabled{  
-    color: #ccc;  
+/*禁用样式*/
+.stepper .disabled{
+    color: #ccc;
 }  
+
+/*数量加减*/
+.carts-num{
+  position: absolute;
+  right: 30rpx;
+  bottom: 10rpx;
+  display: flex; 
+  align-items: center; 
+  text-align: center; 
+  height: 50rpx;
+}
+.view_text_center{
+  border: 1rpx solid #ebebeb;
+  border-radius: 50rpx;
+  font-weight: 600;
+  font-size: 30rpx;
+  color: #333;height: 50rpx;
+  line-height: 50rpx;
+  width: 76rpx;
+  padding: 0 15rpx;
+  /* width: 100%; */
+  
+}
+.carts-num .minus, .carts-num .plus{
+  margin: 10rpx; 
+  color: #000; 
+  text-align: center;
+  height: 40rpx;  
+  line-height: 40rpx; 
+  width: 40rpx;
+}
+.carts-num .minus{
+  font-size: 34rpx;
+}
+.carts-num .plus{
+  font-size: 34rpx;
+}

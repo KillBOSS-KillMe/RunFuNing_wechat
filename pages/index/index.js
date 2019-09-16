@@ -4,30 +4,13 @@ const app = getApp()
 
 Page({
   data: {
-    indicatorColor:'white',
-    indicatorActivecolor:'#FFB400',
-
     userInfoButtonShow: true,
-    StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar,
     userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     navList: [],
     swiperList: [],
-    page: 1,
     goodsArr: [],
-    isShow: false,
     allGoods: [],
-    imgUrl: '',
-    url: "../../image/moren.png",
-
-    iShow: true,
-    // isClick:true
-    // input默认是1  
-    num: 0,
-    // 使用data数据对象设置样式名  
-    minusStatus: 'disabled'  
+    imgUrl: ''
   },
   //事件处理函数
   bindViewTap: function () {
@@ -39,119 +22,92 @@ Page({
     this.setData({
       imgUrl: app.globalData.imgUrl
     })
-    var that = this
-    wx.request({
-      url: 'https://shu.beaconway.cn/banner_show',
-      method: 'post',
-      success: function (res) {
-        let i = 0
-        let bannerArray = []
-        for (i in res.data.data) {
-          bannerArray.push('https://shu.beaconway.cn' + res.data.data[i].img)
-        }
-        wx.setStorage({
-          key: "banner_show",
-          data: bannerArray
-        })
-        that.setData({
-          swiperList: bannerArray
-        })
-      }
-    })
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称 
-          that.getUserInfo()
-        }
-      }
-    })
-    // if (app.globalData.userInfo) {
-    //   this.setData({
-    //     userInfo: app.globalData.userInfo,
-    //     hasUserInfo: true
-    //   })
-    // } else {
-    //   wx.getSetting({
-    //     success: res => {
-    //       if (res.authSetting['scope.userInfo']) {
-    //         that.setData({
-    //           userInfoButtonShow: false
-    //         })
-    //         // 已经授权，可以直接调用 getUserInfo 获取头像昵称 
-    //         that.getUserInfo()
-    //       }
-    //     }
-    //   })
-    // }
+    this.getBanner()
+    this.getUserInfo()
+
   },
-  onShow(){
-    this.onLoad()
+  onShow() {
+  },
+  getBanner() {
+    wx.request({
+      url: `${app.globalData.requestUrl}/banner_show`,
+      method: 'post',
+      success: res => {
+        if (res.data.code == 1) {
+          this.setData({
+            swiperList: res.data.data
+          })
+        }
+      }
+    })
   },
   getUserInfo: function () {
-    
-    var that = this
-    that.setData({
-      userInfoButtonShow: false
-    })
+    // wx.getSetting({
+    //   success: res => {
+    //     if (res.authSetting['scope.userInfo']) {
+
     wx.getUserInfo({
-      success: function (res) {
+      success: res => {
         console.log(res)
         let userInfo = res.userInfo
-
         app.globalData.userInfo = userInfo
+        this.setData({
+          userInfoButtonShow: false
+        })
+        this.setData({
+          userInfo: userInfo
+        })
         wx.login({
-          success(res) {
-            if (res.code) {
+          success: datas => {
+            console.log(datas)
+            if (datas.code) {
               wx.request({
                 url: `${app.globalData.requestUrl}/wxLogin`,
                 method: 'POST',
                 data: {
-                  code: res.code,
+                  code: datas.code,
                   nickname: userInfo.nickName,
                   avatarUrl: userInfo.avatarUrl
                 },
-                success: function (res) {
-                  app.globalData.userInfo = res.data.data
-                  wx.request({
-                    url: `${app.globalData.requestUrl}/Good/goodsClass`,
-                    method: 'POST',
-                    success: res => {
-                      let typeList = res.data.data
-                      let i = 0
-                      let allGoods = []
-                      for (i in typeList) {
-                        allGoods.push('')
-                      }
-                      that.setData({
-                        navList: typeList,
-                        allGoods: allGoods,
-                      })
-                      if (typeList.length > 0) {
-                        that.setData({
-                          TabCur: 0
-                        })
-                        that.getGoods(typeList[0].id, 0)
-                      }
-                    }
+                success: data => {
+                  app.globalData.userInfo = data.data.data
+                  this.setData({
+                    userInfo: data.data.data
                   })
+                  // 获取分类
+                  this.getGoodsClass()
                 }
-              })
-            } else {
-              wx.showModal({
-                title: '',
-                content: res.errMsg,
               })
             }
           }
         })
       }
     })
+    //     }
+    //   }
+    // })
+
+  },
+  getGoodsClass() {
+    wx.request({
+      url: `${app.globalData.requestUrl}/Good/goodsClass`,
+      method: 'POST',
+      success: res => {
+        if (res.data.code) {
+          let typeList = res.data.data
+          this.setData({
+            navList: typeList
+          })
+          if (typeList.length > 0) {
+            this.getGoods(0)
+          }
+        }
+      }
+    })
   },
   detail(e) {
     let index = e.currentTarget.dataset.index
     let node = this.data.goodsArr[index]
-    console.log(node)
     let data = `longimg=${node.longimg}&id=${node.id}&img=${node.img}&price=${node.price}&spec=${node.spec}&iscar=${node.iscar}`
     wx.navigateTo({
       url: `/pages/detail/detail?${data}`
@@ -172,123 +128,95 @@ Page({
         goodsArr: allGoods[index],
       })
     } else {
-      this.getGoods(e.currentTarget.dataset.cid, index)
+      this.getGoods(index)
     }
   },
   //封装拿到商品的函数
-  getGoods(id, index) {
+  getGoods(index) {
     wx.request({
       url: `${app.globalData.requestUrl}/Good/goods`,
       method: 'POST',
       data: {
-        cid: id,
-        page: this.data.page,
-        uid:app.globalData.userInfo.id
+        cid: this.data.navList[index].id,
+        page: 1,
+        uid: this.data.userInfo.id
       },
       success: res => {
-        var i = 0
-        var goodsArr = res.data.data
-        let allGoods = this.data.allGoods
-        allGoods[index] = goodsArr
         this.setData({
-          allGoods: allGoods,
-          goodsArr: goodsArr,
-          TabCur: index
+          goodsArr: ""
         })
-        //根据下标渲染数据
-        if (goodsArr == undefined) {
+        if (res.data.code) {
+          var goodsArr = res.data.data
+          let allGoods = this.data.allGoods
+          allGoods[index] = goodsArr
           this.setData({
-            goodsArr: ""
+            allGoods: allGoods,
+            goodsArr: goodsArr,
+            TabCur: index
           })
         }
       }
     })
   },
 
-  addShopcar(e) {
-    if (e.currentTarget.dataset.is_car == 1) {
-      wx.showModal({
-        title: '',
-        content: '请勿重复加入购物车',
-      })
+  numDown(e) {
+    let index = e.currentTarget.dataset.index
+    let nodeAll = this.data.goodsArr
+    let node = nodeAll[index]
+    if (node.car_num == 0) {
       return false
     }
-    var index = e.currentTarget.dataset.index
-    var list = this.data.goodsArr
-    wx.request({
-      url: `${app.globalData.requestUrl}/Car/inCar`,
-      method: 'POST',
-      data: {
-        uid: app.globalData.userInfo.id,
-        good_id: e.currentTarget.dataset.goodsid,
-        spec: e.currentTarget.dataset.spec,
-        price: e.currentTarget.dataset.price,
-        img: e.currentTarget.dataset.img
-      },
-      success: res => {
-        wx.showModal({
-          title: '提示',
-          content: '加入购物车成功',
-        })
-        list[index].is_car = 1
-        let allGoods = this.data.allGoods
-        allGoods[this.data.TabCur] = list
-        this.setData({
-          goodsArr: list,
-          allGoods: allGoods
-        })
-      }
+    node['car_num'] = node.car_num - 1
+    nodeAll[index] = node
+    this.setData({
+      goodsArr: nodeAll
     })
+    this.addShopcar(node)
   },
-
-
-  /* 点击减号 */
-  bindMinus: function (e) {
-    const index = e.currentTarget.dataset.index;
-    // var num = this.data.num;
-    let num = this.data.goodsArr[index].car_num;
-    console.log(this.data.goodsArr[index])
-    // 如果大于1时，才可以减  
-    if (num > 0) {
-      num--;
-    }
-    // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num <= 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
+  numUp(e) {
+    let index = e.currentTarget.dataset.index
+    let nodeAll = this.data.goodsArr
+    let node = nodeAll[index]
+    node['car_num'] = node.car_num + 1
+    nodeAll[index] = node
     this.setData({
-      num: num,
-      minusStatus: minusStatus
-    });
+      goodsArr: nodeAll
+    })
+    this.addShopcar(node)
   },
-  /* 点击加号 */
-  bindPlus: function (e) {
-    const index = e.currentTarget.dataset.index;
-    let goodsArr = this.data.goodsArr
-    var num = this.data.num;
-    console.log(goodsArr[index]
-    )
-    // 不作过多考虑自增1  
-    num++;
-    // 只有大于一件的时候，才能normal状态，否则disable状态  
-    var minusStatus = num < 1 ? 'disabled' : 'normal';
-    // 将数值与状态写回  
+  getNum(e) {
+    let index = e.currentTarget.dataset.index
+    let nodeAll = this.data.goodsArr
+    let node = nodeAll[index]
+    let num  = e.detail.value
+    node['car_num'] = num
+    nodeAll[index] = node
     this.setData({
-      num: num,
-      minusStatus: minusStatus
-    });
-  },
-  /* 输入框事件 */
-  bindManual: function (e) {
-    var num = e.detail.value;
-    // 将数值与状态写回  
-    this.setData({
-      num: num
-    });
+      goodsArr: nodeAll
+    })
+    addShopcar(node)
   },
   // 进入搜索页面
   goSearchPage() {
     wx.navigateTo({
       url: '/pages/search/search'
+    })
+  },
+  addShopcar(node){
+    console.log(node)
+    wx.request({
+      url: `${app.globalData.requestUrl}/Car/inCar`,
+      method: 'POST',
+      data: {
+        uid: app.globalData.userInfo.id,
+        goods_id: node.id,
+        car_num: node.car_num,
+        spec: node.spec,
+        price: node.price,
+        img: node.img,
+      },
+      success: res => {
+      }
     })
   }
 })
