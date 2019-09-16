@@ -295,5 +295,11 @@ Page({
     this.setData({
       num: num
     });
-  }  
+  },
+  // 进入搜索页面
+  goSearchPage() {
+    wx.navigateTo({
+      url: '/pages/search/search'
+    })
+  }
 })

@@ -1,5 +1,5 @@
 <view class=''>
-  <view class='serchwrap'>
+  <view class='serchwrap' bindtap="goSearchPage">
 
   </view>
   <!-- 轮播 -->
@@ -31,7 +31,9 @@
           <view class="content-R">
             <view class="goodsName">{{item.spec}}</view>
             <view class="goodstag">剩余</view>
-            <view class='pricewrap'>￥<text>{{item.price}}</text></view>
+            <view class='pricewrap'>
+              ￥<text>{{item.price}}</text>
+            </view>
             <view class="stepper">  
               <!-- 减号 -->  
               <text class="{{minusStatus}}" bindtap="bindMinus" data-index="{{index}}">-</text>  
