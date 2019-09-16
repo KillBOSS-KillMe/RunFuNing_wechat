@@ -13,7 +13,8 @@ Page({
     collected:true,
     isHide: false,
     iShow: true,
-    orderList:[]
+    orderList:[],
+    imgUrl: ''
   },
 
   /**
@@ -21,6 +22,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      imgUrl: app.globalData.imgUrl,
       userInfo: app.globalData.userInfo,
       TabCur: 0,
     })
@@ -55,11 +57,8 @@ Page({
   },
   getAddressList() {
     wx.request({
-      url: 'https://shu.beaconway.cn/address_info',
-      method: 'post',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
+      url: `${app.globalData.requestUrl}/address_info`,
+      method: 'POST',
       data: {
         uid: app.globalData.userInfo.id
       },
@@ -77,11 +76,8 @@ Page({
   },
   getOrderList() {
     wx.request({
-      url: 'https://shu.beaconway.cn/user_order',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: 'post',
+      url: `${app.globalData.requestUrl}/user_order`,
+      method: 'POST',
       data: {
         uid: app.globalData.userInfo.id
       },
@@ -101,11 +97,8 @@ Page({
     var that=this
     var index = e.currentTarget.dataset.index
     wx.request({
-      url: 'https://shu.beaconway.cn/address_del',
-      method: 'post',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
+      url: `${app.globalData.requestUrl}/address_del`,
+      method: 'POST',
       data: {
         id: e.currentTarget.dataset.id
       },
@@ -121,11 +114,8 @@ Page({
   //确认订单
   orderConfirm(e){
     wx.request({
-      url: 'https://shu.beaconway.cn/Order/receive',
-      method: 'post',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
+      url: `${app.globalData.requestUrl}/Order/receive`,
+      method: 'POST',
       data:{
         orderNum:e.currentTarget.dataset.order
       },
@@ -139,13 +129,10 @@ Page({
     var that = this
     var orderList = this.data.orderList
     wx.request({
-      url: 'https://shu.beaconway.cn/Order/del_order',
-      method: 'post',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
+      url: `${app.globalData.requestUrl}/Order/del_order`,
+      method: 'POST',
       data: {
-        orderNum: e.currentTarget.dataset.order
+        orderNum: orderList[index].orderNum
       },
       success: function (res) {
         
@@ -162,15 +149,14 @@ Page({
   },
   //申请售后
   shouhou(e){
+    let index = e.currentTarget.dataset.index
+    let orderList = this.data.orderList
     wx.request({
-      url: 'https://shu.beaconway.cn/Order/service',
-      method: 'post',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
+      url: `${app.globalData.requestUrl}/Order/service`,
+      method: 'POST',
       data:{
-        orderNum: e.currentTarget.dataset.order,
-        status:e.currentTarget.dataset.status
+        orderNum: orderList[index].orderNum,
+        status: orderList[index].status
       },
       success:function(res){
       }
@@ -192,11 +178,8 @@ Page({
       addressList: addressList
     })
     wx.request({
-      url: 'https://shu.beaconway.cn/address_default',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: 'post',
+      url: `${app.globalData.requestUrl}/address_default`,
+      method: 'POST',
       data: {
         uid: app.globalData.userInfo.id,
         id: e.currentTarget.dataset.id
@@ -212,8 +195,11 @@ Page({
   },
   //跳转详情
   godetail(e){
+    let index = e.currentTarget.dataset.index
+    let node = this.data.orderList[index]
+    let data = `str=${node.status}&order=${node.orderNum}`
     wx.navigateTo({
-      url: `../order/order?str=${e.currentTarget.dataset.status}&order=${e.currentTarget.dataset.code}`,
+      url: `/pages/order/order?${data}`,
     })
   },
   //新建地址
@@ -235,39 +221,4 @@ Page({
     }
     
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

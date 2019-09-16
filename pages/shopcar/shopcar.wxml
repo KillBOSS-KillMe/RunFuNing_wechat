@@ -1,8 +1,4 @@
 <view>
-  <cu-custom bgColor="bg-gradual-red" isBack="{{true}}">
-    <!-- <view slot="backText" bindtap="goback">返回</view> -->
-    <view slot="content">购物车</view>
-  </cu-custom>
   <view class="pages">
     <view wx:if="{{list.length>0}}">
       <view class='edit'>

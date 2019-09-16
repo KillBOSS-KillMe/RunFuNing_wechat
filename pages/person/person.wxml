@@ -52,9 +52,9 @@
   <scroll-view wx:if="{{!isShow}}"> 
       <view class="allList">
         <view wx:for="{{orderList}}" class="orderList">
-          <image class="ordeRimg1" bindtap="godetail" data-status="{{item.status}}" data-code="{{item.orderNum}}" src="{{item.goods[0].img}}"></image>
+          <image class="ordeRimg1" bindtap="godetail" data-index="{{index}}" src="{{imgUrl + item.goods[0].img}}"></image>
           <view class="createTime">{{item.createTime}}</view>
-          <text class="spec">{{item.goods[0].spec}}</text>
+          <text class="spec" bindtap="godetail" data-index="{{index}}">{{item.goods[0].spec}}</text>
           
           <view class="heji">
             <text class="itemNum">共{{item.num}}件商品    合计￥:      </text>
