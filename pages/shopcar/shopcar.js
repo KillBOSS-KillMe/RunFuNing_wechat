@@ -235,6 +235,7 @@ Page({
       // 所有价格加起来 count_money
       priceAll += list[i].num * Number(list[i].price);
     }
+
     // 最后赋值到data中渲染到页面
     this.setData({
       priceAll: priceAll.toFixed(2)
@@ -255,7 +256,7 @@ Page({
       list: nodeAll
     })
     this.addShopcar(node)
-    count_price()
+    this.count_price()
   },
   numUp(e) {
     let index = e.currentTarget.dataset.index
@@ -267,7 +268,7 @@ Page({
       list: nodeAll
     })
     this.addShopcar(node)
-    count_price()
+    this.count_price()
   },
   getNum(e) {
     let index = e.currentTarget.dataset.index
@@ -279,8 +280,8 @@ Page({
     this.setData({
       list: nodeAll
     })
-    addShopcar(node)
-    count_price()
+    this.addShopcar(node)
+    this.count_price()
   },
   addShopcar(node){
     wx.showToast({
@@ -292,7 +293,7 @@ Page({
       method: 'POST',
       data: {
         uid: app.globalData.userInfo.id,
-        goods_id: node.id,
+        goods_id: node.good_id,
         num: node.num,
         spec: node.spec,
         price: node.price,
