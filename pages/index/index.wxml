@@ -1,5 +1,8 @@
 <view class=''>
-  <view class='serchwrap' bindtap="goSearchPage"></view>
+  <view class="serchwrap" bindtap="goSearchPage">
+    <input type="text" placeholder="请输入搜索内容"/>
+    <icon class="cuIcon-search" />
+  </view>
   <!-- 轮播 -->
   <!-- 重置小圆点的样式 -->
   <view class='swiper_box'>

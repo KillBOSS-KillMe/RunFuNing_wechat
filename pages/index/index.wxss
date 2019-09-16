@@ -19,6 +19,16 @@ page {
   border-radius: 18px;
   background: #f0f0f0;
   margin: 5px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20rpx;
+}
+.serchwrap icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
 }
 /*  */
 .swiper_box {
