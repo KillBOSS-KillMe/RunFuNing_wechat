@@ -98,6 +98,18 @@ Page({
     })
   },
   delAddress(e) {
+    wx.showModal({
+      title: '',
+      content: '确认删除地址？',
+      success: res => {
+        if (res.confirm) {
+          this.runDelAddress(e)
+        }
+      }
+    })
+    
+  },
+  runDelAddress(e){
     var that = this
     var index = e.currentTarget.dataset.index
     wx.request({
@@ -106,12 +118,14 @@ Page({
       data: {
         id: e.currentTarget.dataset.id
       },
-      success: function (res) {
-        that.data.addressList.splice(index, 1)
-        var newAddressList = that.data.addressList
-        that.setData({
-          addressList: newAddressList
-        })
+      success: res => {
+        if (res.data.code == 1) {
+          that.data.addressList.splice(index, 1)
+          var newAddressList = that.data.addressList
+          that.setData({
+            addressList: newAddressList
+          })
+        }
       }
     })
   },

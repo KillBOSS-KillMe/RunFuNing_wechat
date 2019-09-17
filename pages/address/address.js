@@ -43,36 +43,32 @@ Page({
     if (this.data.talks_2.length == 0) {
       wx.showToast({
         title: '输入的手机号为空',
-        icon: 'success',
-        duration: 1500
+        icon: 'none',
+        duration: 2000
       })
       return false;
     } else if (this.data.talks_2.length < 11) {
       wx.showToast({
         title: '手机号长度有误！',
-        icon: 'success',
-        duration: 1500
+        icon: 'none',
+        duration: 2000
       })
       return false;
     } else if (!myreg.test(this.data.talks_2)) {
       wx.showToast({
         title: '手机号有误！',
-        icon: 'success',
-        duration: 1500
+        icon: 'none',
+        duration: 2000
       })
       return false;
     } else {
       wx.showToast({
-        title: '填写正确',
-        icon: 'success',
-        duration: 1500
+        title: '数据提交中...',
+        icon: 'loading'
       })
       wx.request({
-        url: 'https://shu.beaconway.cn/address_insert',
-        method: 'post',
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
+        url: `${app.globalData.requestUrl}/address_insert`,
+        method: 'POST',
         data: {
           uid: app.globalData.userInfo.id,
           consignee: this.data.talks_1,
@@ -81,6 +77,7 @@ Page({
           address: this.data.talks_4
         },
         success: function (res) {
+          wx.hideToast()
           wx.navigateBack({
             
           })
@@ -89,52 +86,4 @@ Page({
     }
     
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

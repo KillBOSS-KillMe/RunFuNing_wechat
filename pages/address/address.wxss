@@ -4,7 +4,7 @@ page{
 }
 .address{
   margin-left: 26rpx;
-  margin-top: 70rpx;
+  /* margin-top: 70rpx; */
 }
 .newAddress{
   font-weight: bolder;

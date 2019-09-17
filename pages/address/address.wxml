@@ -1,8 +1,8 @@
 <!--pages/address/address.wxml-->
 <view class="address">
-  <view class="newAddress">
+  <!-- <view class="newAddress">
     新建地址
-  </view>
+  </view> -->
   <input bindinput="talks_1" placeholder="请输入您的姓名"></input>
   <input bindinput="talks_2" placeholder="请输入您的电话号码"></input>
   <input bindinput="talks_3" placeholder="请输入您的店铺名称"></input>

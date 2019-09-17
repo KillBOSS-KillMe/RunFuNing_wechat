@@ -27,6 +27,11 @@ Page({
 
   },
   onShow() {
+    let userInfo = this.data.userInfo
+    if (userInfo.hasOwnProperty("id")) {
+      // 获取分类
+      this.getGoodsClass()
+    }
   },
   getBanner() {
     wx.request({

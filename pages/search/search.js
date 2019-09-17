@@ -31,14 +31,15 @@ Page({
     this.setData({
       searchName: e.detail.value
     })
+    this.runSearch()
   },
   runSearch() {
     let searchName = this.data.searchName
     if (searchName == '') {
-      wx.showToast({
-        title: '请输入搜索内容',
-        icon: 'loading'
-      });
+      // wx.showToast({
+      //   title: '请输入搜索内容',
+      //   icon: 'loading'
+      // });
       return false
     }
     wx.request({

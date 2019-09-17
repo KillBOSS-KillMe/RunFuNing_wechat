@@ -5,7 +5,7 @@
         <text class="shopCar1">购物车</text>
         <label class='edit_btn' bindtap='btn_edit'>清空购物车</label>
       </view>
-      <view class="address" wx:if="{{addressid != ''}}" bindtap="goAddress" wx:if="{{hasList}}">
+      <view class="address" wx:if="{{addressid != '' && list.length > 0}}" bindtap="goAddress">
         <text class="username">{{addressList.consignee}}</text>
         <text class="phone">{{addressList.phone}}</text>
         <view class="addressDetail">{{addressList.address + addressList.shopname}}</view>
