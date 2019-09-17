@@ -4,7 +4,7 @@
     <text class="spec">{{item.spec}}</text>
     <view class="heji">
       <text class="itemNum">共{{item.num}}件商品    合计￥:</text>
-      <text class="total">{{item.price * item.num}}</text>
+      <text class="total">{{item.allPrice}}</text>
     </view>
   </view>
   <view class="bottonNav">

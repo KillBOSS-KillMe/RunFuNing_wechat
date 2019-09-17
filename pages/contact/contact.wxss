@@ -11,9 +11,26 @@ page{
   margin-top: 92rpx;
   font-weight: bolder;
 }
-.person,.phone,.nowTime,.address{
+.person,.phone,.nowTime{
   margin-top: 32rpx;
   color: #A1A1A1
+}
+.address{
+  margin-top: 32rpx;
+  color: #A1A1A1;
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+}
+.address view{
+  padding-right: 30rpx;
+}
+.address .dingwei{
+  position: static;
+  margin-right: 20rpx;
+  margin-top: 10rpx;
+  width: 30rpx;
+  height: 30rpx;
 }
 .dingwei{
   width: 26rpx;

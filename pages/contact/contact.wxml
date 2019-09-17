@@ -8,8 +8,8 @@
       <image class="dingwei" bindtap="call" src="../../image/dianhua.png"></image>
     </view>
     <view class="nowTime">营业时间：<text>{{information.time}}</text></view>
-    <view class="address">联系地址：
-      <text>陕西省西安市</text>
+    <view class="address">
+      <view>联系地址：{{information.address}}</view>
       <image class="dingwei" bindtap="map" src="../../image/dingwei.png"></image>
     </view>
   </view>

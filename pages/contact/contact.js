@@ -1,106 +1,60 @@
 // pages/contact/contact.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    information:[]
+    information: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
     wx.request({
-      url: 'https://shu.beaconway.cn/about',
-      method:'post',
-      success:function(res){
-        console.log(res)
-        that.setData({
-          information:res.data.data
+      url: `${app.globalData.requestUrl}/about`,
+      method: 'POST',
+      success: res => {
+        this.setData({
+          information: res.data.data
         })
       }
     })
   },
   //地图
-  map:function(){
-    wx.getLocation({
-      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
-      success: function (res) {
-        var latitude = res.latitude
-        var longitude = res.longitude
-        wx.openLocation({
-          latitude: latitude,
-          longitude: longitude,
-          scale: 28
-        })
-      }
+  map: function () {
+    let information = this.data.information
+    wx.openLocation({
+      latitude: parseFloat(information.latitude),
+      longitude: parseFloat(information.longitude),
+      name: '润福宁食品批发中心',
+      address: information.address,
+      scale: 28
     })
-  },  
+    // wx.getLocation({
+    //   type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+    //   success: function (res) {
+    //     var latitude = res.latitude
+    //     var longitude = res.longitude
+    //     wx.openLocation({
+    //       latitude: latitude,
+    //       longitude: longitude,
+    //       scale: 28
+    //     })
+    //   }
+    // })
+  },
   //调起电话
-  call(){
+  call() {
     wx.makePhoneCall({
-
-      phoneNumber: this.data.information.time,
-
+      phoneNumber: this.data.information.phone
     })
   },
-  back(){
-
+  back() {
     wx.navigateBack({
-
       delta: 1
-
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

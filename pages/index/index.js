@@ -53,7 +53,6 @@ Page({
 
     wx.getUserInfo({
       success: res => {
-        console.log(res)
         let userInfo = res.userInfo
         app.globalData.userInfo = userInfo
         this.setData({
@@ -64,7 +63,6 @@ Page({
         })
         wx.login({
           success: datas => {
-            console.log(datas)
             if (datas.code) {
               wx.request({
                 url: `${app.globalData.requestUrl}/wxLogin`,

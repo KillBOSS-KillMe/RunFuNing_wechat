@@ -30,10 +30,14 @@ Page({
       data: {
         orderNum: options.order
       },
-      success: function (res) {
-        console.log(res)
+      success: res => {
+        let orderList = res.data.data
+        for (let i = 0; i < orderList.length; i++) {
+          let allPrice = parseFloat(orderList[i].price) * orderList[i].num
+          orderList[i]['allPrice'] = allPrice.toFixed(2)
+        }
         that.setData({
-          orderList: res.data.data,
+          orderList: orderList,
           orderNum: options.order,
           str: options.str
         })

@@ -180,7 +180,6 @@ Page({
   shouhou(e) {
     let index = e.currentTarget.dataset.index
     let orderList = this.data.orderList
-    console.log(orderList, index)
     wx.request({
       url: `${app.globalData.requestUrl}/Order/service`,
       method: 'POST',

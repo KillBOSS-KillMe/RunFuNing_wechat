@@ -60,9 +60,12 @@
             确认收货
           </text>
           <text class="daifahuo" wx:if="{{item.status==1}}">待发货</text>
-          <text class="daifahuo" wx:if="{{item.status==3}}" data-order="{{item.orderNum}}" data-status="{{item.status}}">
+          <text class="daifahuo" wx:if="{{item.status==2}}">已发货</text>
+          <text class="daifahuo" wx:if="{{item.status==3}}">已收货</text>
+          <text class="daifahuo" wx:if="{{item.status==4}}">已申请售后</text>
+          <!-- <text class="daifahuo" wx:if="{{item.status==3}}" data-order="{{item.orderNum}}" data-status="{{item.status}}">
             已收货
-          </text>
+          </text> -->
           <!-- <text class="shouhou" wx:if="{{item.status == 1}}" data-index="{{index}}" bindtap="shouhou">
             申请售后
           </text>
