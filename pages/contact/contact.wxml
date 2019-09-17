@@ -3,14 +3,14 @@
   <view>
     <!-- <view class="contactUs">联系我们</view> -->
     <view class="person">联 系 人：<text>{{information.name}}</text></view>
-    <view class="phone">联系电话：
+    <view class="phone" bindtap="call">联系电话：
       <text>{{information.phone}}</text>
-      <image class="dingwei" bindtap="call" src="../../image/dianhua.png"></image>
+      <image class="dingwei" src="../../image/dianhua.png"></image>
     </view>
     <view class="nowTime">营业时间：<text>{{information.time}}</text></view>
-    <view class="address">
+    <view class="address" bindtap="map">
       <view>联系地址：{{information.address}}</view>
-      <image class="dingwei" bindtap="map" src="../../image/dingwei.png"></image>
+      <image class="dingwei" src="../../image/dingwei.png"></image>
     </view>
   </view>
 </view>
