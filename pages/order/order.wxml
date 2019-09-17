@@ -9,6 +9,10 @@
   </view>
   <view class="bottonNav">
     <button class="delOrder" bindtap="delOrder">删除订单</button>
-    <button class="confirmOrder" wx:if="{{str!=3}}" bindtap="confirmOrder">确认收货</button>
+    <button class="confirmOrder" wx:if="{{options.str == 3}}" bindtap="shouhou">申请售后</button>
+    <button class="confirmOrder" wx:if="{{options.str == 4}}" bindtap="shouhou">取消售后</button>
+    <button class="confirmOrder" wx:if="{{options.str != 3 && options.str != 4}}" bindtap="confirmOrder">
+      确认收货
+    </button>
   </view>
 </view>

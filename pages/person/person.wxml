@@ -63,12 +63,12 @@
           <text class="daifahuo" wx:if="{{item.status==3}}" data-order="{{item.orderNum}}" data-status="{{item.status}}">
             已收货
           </text>
-          <text class="shouhou" wx:if="{{item.status == 1}}" data-index="{{index}}" bindtap="shouhou">
+          <!-- <text class="shouhou" wx:if="{{item.status == 1}}" data-index="{{index}}" bindtap="shouhou">
             申请售后
           </text>
           <text class="shouhou" wx:if="{{item.status == 2}}" data-index="{{index}}" bindtap="shouhou">
             取消售后
-          </text>
+          </text> -->
         </view>
       </view>
     </scroll-view>

@@ -146,7 +146,7 @@
 .daifahuo{
   position: absolute;
   right: 26rpx;
-  bottom: 5rpx;
+  bottom: 35rpx;
   color: #7e7e7e;
 }
 .conFirm{
