@@ -108,7 +108,7 @@ Page({
   detail(e) {
     let index = e.currentTarget.dataset.index
     let node = this.data.goodsArr[index]
-    let data = `longimg=${node.longimg}&id=${node.id}&img=${node.img}&price=${node.price}&spec=${node.spec}&iscar=${node.iscar}`
+    let data = `longimg=${node.longimg}&id=${node.id}&img=${node.img}&price=${node.price}&spec=${node.spec}&iscar=${node.car_num}`
     wx.navigateTo({
       url: `/pages/detail/detail?${data}`
     })

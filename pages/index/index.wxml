@@ -27,7 +27,8 @@
           <image src="{{imgUrl + item.img}}" bindtap='detail' data-index="{{index}}"></image>
           <view class="content-R">
             <view class="goodsName" bindtap='detail' data-index="{{index}}">{{item.spec}}</view>
-            <view class="goodstag">剩余</view>
+            <!-- <view class="goodstag">剩余</view> -->
+            <view class="goodstag">   </view>
             <view class='pricewrap'>
               ￥
               <text>{{item.price}}</text>

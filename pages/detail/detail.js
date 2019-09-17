@@ -14,7 +14,8 @@ Page({
     totalprice:0.00,
     id:[],
     iscar:'',
-    imgUrl: ''
+    imgUrl: '',
+    options: null
   },
 
   /**
@@ -23,7 +24,6 @@ Page({
   onLoad: function (options) {
     this.setData({
       options: options,
-      totalprice: app.globalData.total,
       imgUrl: app.globalData.imgUrl
     })
     // options.img,
@@ -33,34 +33,67 @@ Page({
     // options.id,
     // options.iscar
   },
-  //返回上一级
-  // goback(){
-  //   wx.navigateBack({
-  //     delta: 1
-  //   })
-  // },
   goshopcar(){
     wx.switchTab({
       url: '../shopcar/shopcar',
     })
   },
-  addShop(e) {
+  addShopcar(){
+    wx.showToast({
+      title: '正在更改购物车数据',
+      icon: 'loading'
+    });
+    let options = this.data.options
+    if (options.iscar == 0) {
+      options['iscar'] = 1
+    }
     wx.request({
       url: `${app.globalData.requestUrl}/Car/inCar`,
       method: 'POST',
       data: {
         uid: app.globalData.userInfo.id,
-        good_id: this.data.options.id,
-        spec: this.data.options.spec,
-        price: this.data.options.price,
-        img: this.data.options.img
+        goods_id: options.id,
+        num: options.iscar,
+        spec: options.spec,
+        price: options.price,
+        img: options.img,
       },
       success: res => {
-        wx.showModal({
-          title: '提示',
-          content: '加入购物车成功',
-        })
+        wx.hideToast()
+        if (res.data.code == 1) {
+          wx.showToast({
+            title: '加入购物车成功',
+            icon: 'success'
+          });
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none'
+          });
+        }
       }
     })
   },
+  // 控制图大小
+  autoImage(e) {
+    // 获取图片的狂傲
+    var imgW = e.detail.width
+    var imgH = e.detail.height
+    // 计算图片比例
+    var imgScale = imgW / imgH
+    // 声明自适应宽高变量
+    var autoW = ''
+    var autoH = ''
+    // 获取屏幕宽度，并将图片设置为屏幕等宽
+    wx.getSystemInfo({
+      success: res => {
+        autoW = res.windowWidth
+        autoH = autoW / imgScale
+        this.setData({
+          autoW: autoW,
+          autoH: autoH
+        })
+      }
+    })
+  }
 })

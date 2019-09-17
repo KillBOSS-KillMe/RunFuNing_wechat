@@ -13,7 +13,7 @@ Page({
     // 全选状态
     selectAllStatus: false, // 全选状态，默认全选
     addressList: [],
-    addressid:[],
+    addressid: '',
     imgUrl: ''
   },
   onLoad() {
@@ -81,10 +81,12 @@ Page({
         uid: app.globalData.userInfo.id
       },
       success: function (res) {
-        that.setData({
-          addressList: res.data.data,
-          addressid: res.data.data.id
-        })
+        if (res.data.code == 1) {
+          that.setData({
+            addressList: res.data.data,
+            addressid: res.data.data.id
+          })
+        }
       }
     })
   },
@@ -185,6 +187,13 @@ Page({
 
   // 提交订单
   btn_submit_order: function () {
+    if (this.data.addressid == '') {
+      wx.showToast({
+        title: '请先新增收货地址',
+        icon: 'none'
+      });
+      return false
+    }
     var that = this
     var goodsArr = JSON.stringify(this.data.list)
     var upData = { "uid": app.globalData.userInfo.id, "aid": this.data.addressid, "car": goodsArr }

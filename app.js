@@ -46,7 +46,7 @@ App({
     total:'',
     goodsNum:'',
     address:'',
-    requestUrl: 'http://shu.beaconway.cn',
-    imgUrl: 'http://shu.beaconway.cn',
+    requestUrl: 'https://shu.beaconway.cn',
+    imgUrl: 'https://shu.beaconway.cn',
   }
 })

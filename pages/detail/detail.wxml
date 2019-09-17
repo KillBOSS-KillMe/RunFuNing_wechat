@@ -8,17 +8,17 @@
       <text class="goodsprice">￥<text class="price" bindtap="addShop">{{options.price}}</text></text>
       <!-- <image class="shopcar" bindtap="addShopcar" src="../../image/gouwuche.png"></image>
       <image wx:if="{{options.iscar == 0}}" class="shopcar" bindtap="addShopcar"></image> -->
-      <image  wx:if="{{options.iscar == 0}}" class="shopcar" bindtap="addShopcar" src="../../image/gouwuche.png"></image>
-      <image wx:if="{{options.iscar == 1}}" class="shopcar" bindtap="addShopcar" src="../../image/gouwuche2.png" ></image>
+      <image  wx:if="{{options.iscar != 0}}" class="shopcar" bindtap="addShopcar" src="../../image/gouwuche.png"></image>
+      <image wx:if="{{options.iscar == 0}}" class="shopcar" bindtap="addShopcar" src="../../image/gouwuche2.png" ></image>
     </view>
   </view>
   <view class="detailAll">
     <view class="goodsDetail1">商品详情</view>
-    <image class="goodsDetail" src="{{imgUrl + options.img}}"></image>
+    <image class="goodsDetail" src="{{imgUrl + options.img}}" bindload='autoImage' style="width:{{autoW}}px;height:{{autoH}}px" bindload='autoImage'></image>
   </view> 
   <view class="navBottom">
     <image class="bottomImg" bindtap="goshopcar" src="../../image/gouwuche3.png"></image>
-    <!-- <text class="fuhao">￥<text class="totalprice">{{totalprice}}</text></text> -->
-    <button bindtap="addShop"wx:if="{{options.iscar==0}}" class="submit">去下单</button>
+    <text class="fuhao">￥<text class="totalprice">{{options.price}}</text></text>
+    <button bindtap="addShopcar" class="submit">加入购物车</button>
   </view>
 </view>

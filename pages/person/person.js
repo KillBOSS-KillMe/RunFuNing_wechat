@@ -6,14 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo:{},
-    navList:[{"img":"../../image/dingdan.png","order":"我的订单"},{"img":"../../image/dizhi.png","order":"收货地址"}],
-    addressList:[],
-    isShow:false,
-    collected:true,
+    userInfo: {},
+    navList: [{ "img": "../../image/dingdan.png", "order": "我的订单" }, { "img": "../../image/dizhi.png", "order": "收货地址" }],
+    addressList: [],
+    isShow: false,
+    collected: true,
     isHide: false,
     iShow: true,
-    orderList:[],
+    orderList: [],
     imgUrl: ''
   },
 
@@ -26,10 +26,9 @@ Page({
       userInfo: app.globalData.userInfo,
       TabCur: 0,
     })
-    if (app.globalData.address==1){  
+    if (app.globalData.address == 1) {
       this.setData({
-
-        TabCur:1,
+        TabCur: 1,
         isShow: true
       })
       app.globalData.address = ""
@@ -43,12 +42,12 @@ Page({
       scrollLeft: (e.currentTarget.dataset.id - 1) * 60
     })
     var index = e.currentTarget.dataset.id
-    if(index==1){
+    if (index == 1) {
       that.setData({
-        isShow:true
+        isShow: true
       })
       that.getAddressList()
-    }else if(index == 0){
+    } else if (index == 0) {
       that.setData({
         isShow: false
       })
@@ -83,18 +82,23 @@ Page({
       },
       success: res => {
         this.setData({
-          orderList: res.data.data
+          orderList: []
         })
+        if (res.data.code == 1) {
+          this.setData({
+            orderList: res.data.data
+          })
+        }
       }
     })
   },
-  goContact(){
+  goContact() {
     wx.navigateTo({
       url: '../contact/contact',
     })
   },
-  delAddress(e){
-    var that=this
+  delAddress(e) {
+    var that = this
     var index = e.currentTarget.dataset.index
     wx.request({
       url: `${app.globalData.requestUrl}/address_del`,
@@ -102,8 +106,8 @@ Page({
       data: {
         id: e.currentTarget.dataset.id
       },
-      success:function(res){
-        that.data.addressList.splice(index,1)
+      success: function (res) {
+        that.data.addressList.splice(index, 1)
         var newAddressList = that.data.addressList
         that.setData({
           addressList: newAddressList
@@ -112,19 +116,30 @@ Page({
     })
   },
   //确认订单
-  orderConfirm(e){
+  orderConfirm(e) {
     wx.request({
       url: `${app.globalData.requestUrl}/Order/receive`,
       method: 'POST',
-      data:{
-        orderNum:e.currentTarget.dataset.order
+      data: {
+        orderNum: e.currentTarget.dataset.order
       },
-      success:function(res){
+      success: function (res) {
       }
     })
   },
   //删除订单
-  delOrder(e){
+  delOrder(e) {
+    wx.showModal({
+      title: '',
+      content: '确认删除订单？',
+      success: res => {
+        if (res.confirm) {
+          this.runDelOrder(e)
+        }
+      }
+    })
+  },
+  runDelOrder(e) {
     var index = e.currentTarget.dataset.index
     var that = this
     var orderList = this.data.orderList
@@ -135,30 +150,35 @@ Page({
         orderNum: orderList[index].orderNum
       },
       success: function (res) {
-        
-        orderList.splice(index,1)
+
+        orderList.splice(index, 1)
         that.setData({
-          orderList:orderList
+          orderList: orderList
         })
-        wx.showModal({
-          title: '',
-          content: '删除订单成功',
-        })
+        wx.showToast({
+          title: '删除订单成功',
+          icon: 'success'
+        });
       }
     })
   },
   //申请售后
-  shouhou(e){
+  shouhou(e) {
     let index = e.currentTarget.dataset.index
     let orderList = this.data.orderList
+    console.log(orderList, index)
     wx.request({
       url: `${app.globalData.requestUrl}/Order/service`,
       method: 'POST',
-      data:{
+      data: {
         orderNum: orderList[index].orderNum,
         status: orderList[index].status
       },
-      success:function(res){
+      success: res => {
+        wx.showToast({
+          title: '申请成功',
+          icon: 'success'
+        });
       }
     })
   },
@@ -167,9 +187,9 @@ Page({
     let addressList = this.data.addressList
     var i = 0
     for (i in addressList) {
-      if (addressList[i].is_default==1) {
+      if (addressList[i].is_default == 1) {
         addressList[i].is_default = 0
-      }else{
+      } else {
         addressList[i].is_default = 1
       }
     }
@@ -184,17 +204,17 @@ Page({
         uid: app.globalData.userInfo.id,
         id: e.currentTarget.dataset.id
       },
-      success:function(res){
+      success: function (res) {
       }
     })
   },
-  edit(e){
+  edit(e) {
     wx.navigateTo({
       url: '../changeAddress/changeAddress?consignee=' + e.currentTarget.dataset.consignee + '&phone=' + e.currentTarget.dataset.phone + '&shopcar=' + e.currentTarget.dataset.shopcar + '&shopname=' + e.currentTarget.dataset.shopname + '&id=' + e.currentTarget.dataset.id,
     })
   },
   //跳转详情
-  godetail(e){
+  godetail(e) {
     let index = e.currentTarget.dataset.index
     let node = this.data.orderList[index]
     let data = `str=${node.status}&order=${node.orderNum}`
@@ -214,11 +234,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (!this.data.isShow) {
-      this.getOrderList()
-    } else {
+    if (this.data.isShow) {
       this.getAddressList()
+    } else {
+      this.getOrderList()
     }
-    
+
   },
 })

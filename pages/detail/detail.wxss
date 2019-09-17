@@ -59,6 +59,7 @@
 
   background: white;
   margin-top: 20rpx;
+  margin-bottom: 130rpx;
 }
 .navBottom{
   position: fixed;

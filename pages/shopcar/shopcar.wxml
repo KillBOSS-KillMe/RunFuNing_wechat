@@ -5,7 +5,7 @@
         <text class="shopCar1">购物车</text>
         <label class='edit_btn' bindtap='btn_edit'>清空购物车</label>
       </view>
-      <view class="address" bindtap="goAddress" wx:if="{{hasList}}">
+      <view class="address" wx:if="{{addressid != ''}}" bindtap="goAddress" wx:if="{{hasList}}">
         <text class="username">{{addressList.consignee}}</text>
         <text class="phone">{{addressList.phone}}</text>
         <view class="addressDetail">{{addressList.address + addressList.shopname}}</view>
@@ -22,10 +22,10 @@
           <!-- 规格 -->
           <!-- <text class="cart_g_name">规格 : {{item.spec}}</text> -->
           <!-- 价格 -->
-          <text class="list_price">
+          <view class="list_price">
             ￥
             <text>{{item.price}}</text>
-          </text>
+          </view>
           <!-- 商品数量加减  style='display:{{show_edit}}' -->
           <view style='display:{{show_edit}}'>
             <view class="carts-num">

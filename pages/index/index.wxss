@@ -77,7 +77,6 @@ page {
   color: #1F1501;
   display: flex;
   justify-content: flex-start;
-  padding: 0 3px;
 }
 
 /* .VerticalNav.nav .cu-item.cur::after {
@@ -143,10 +142,11 @@ page {
   margin: 3% 5% 3%;
 }
 .content-R > .pricewrap {
-  /* margin-top: 8vh*/
+  
   color: #7E7E7E;
   font-size: 10px;
   margin: 0% 5% 0%;
+  margin-top: 50rpx;
 }
 .content-R > .pricewrap  > text{
   color: #DC0909;
