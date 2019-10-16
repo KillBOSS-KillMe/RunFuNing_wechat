@@ -225,5 +225,12 @@ Page({
         wx.hideToast()
       }
     })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '润福宁',
+      desc: '润福宁食品批发中心!',
+      path: '/pages/index/index'
+    }
   }
 })

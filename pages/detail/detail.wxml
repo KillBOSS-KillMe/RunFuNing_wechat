@@ -1,20 +1,19 @@
 <!--pages/detail/detail.wxml-->
 <view>
   <view class="allDetail">
-    <!-- <image class="goback" bindtap="goback" src="../../image/back.png"></image> -->
     <image class="banner" src="{{imgUrl + options.img}}"></image>
-    <text class="goodsname">{{options.spec}}</text>
-    <view>
+  </view>
+  <view class="allDetail" style="padding-bottom: 20rpx">
+    <view class="goodsname">{{options.spec}}</view>
+    <view class="goodItem">
       <text class="goodsprice">￥<text class="price" bindtap="addShop">{{options.price}}</text></text>
-      <!-- <image class="shopcar" bindtap="addShopcar" src="../../image/gouwuche.png"></image>
-      <image wx:if="{{options.iscar == 0}}" class="shopcar" bindtap="addShopcar"></image> -->
       <image  wx:if="{{options.iscar != 0}}" class="shopcar" bindtap="addShopcar" src="../../image/gouwuche.png"></image>
       <image wx:if="{{options.iscar == 0}}" class="shopcar" bindtap="addShopcar" src="../../image/gouwuche2.png" ></image>
     </view>
   </view>
   <view class="detailAll">
     <view class="goodsDetail1">商品详情</view>
-    <image class="goodsDetail" src="{{imgUrl + options.img}}" bindload='autoImage' style="width:{{autoW}}px;height:{{autoH}}px" bindload='autoImage'></image>
+    <image src="{{imgUrl + options.img}}" bindload='autoImage' bindload='autoImage'></image>
   </view> 
   <view class="navBottom">
     <image class="bottomImg" bindtap="goshopcar" src="../../image/gouwuche3.png"></image>

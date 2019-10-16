@@ -1,11 +1,14 @@
 /* pages/detail/detail.wxss */
 .banner{
-  height: 530rpx;
-  width: 100%;
+  /* height: 530rpx;
+  width: 100%; */
+  height: 640rpx;
+  width: 640rpx;
+  margin: 0 55rpx;
 }
 .allDetail{
   background: white;
-  height: 730rpx;
+  height: auto;
   position: relative;
 }
 .goback{
@@ -16,27 +19,32 @@
   z-index: 999;
 }
 .goodsname{
-  /* margin-top: 50rpx; */
   font-size: 34rpx;
   font-weight: bolder;
-  /* margin-left: 30rpx; */
-  position: absolute;
-  top: 550rpx;
-  left: 30rpx;
+  width: 690rpx;
+  margin: 0 30rpx;
 }
 .shopcar {
   width: 68rpx;
   height: 68rpx;
-  position: absolute;
+
+  /* position: absolute;
   right: 26rpx;
-  top: 630rpx; 
+  top: 630rpx;  */
 }
 .goodsprice{
   font-size: 26rpx;
   color: #A1A1A1;
-  position: absolute;
+  /* position: absolute;
   left: 30rpx;
-  top: 650rpx;
+  top: 650rpx; */
+}
+.goodItem{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 690rpx;
+  margin: 0 30rpx;
 }
 .price{
   color: rgb(220, 9, 9);
@@ -44,10 +52,13 @@
   font-weight: bolder;
 }
 .goodsDetail{
- 
   width: 100%;
   font-weight: bolder;
   background: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 .goodsDetail1{
   font-weight: bolder;
@@ -60,6 +71,11 @@
   background: white;
   margin-top: 20rpx;
   margin-bottom: 130rpx;
+}
+.detailAll image{
+  width: 640rpx;
+  height: 640rpx;
+  margin: 0 55rpx;
 }
 .navBottom{
   position: fixed;
