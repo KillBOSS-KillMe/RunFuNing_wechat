@@ -42,7 +42,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null,
+    userInfo: {},
     total:'',
     goodsNum:'',
     address:'',

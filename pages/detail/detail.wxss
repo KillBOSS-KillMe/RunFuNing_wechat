@@ -5,6 +5,7 @@
   height: 640rpx;
   width: 640rpx;
   margin: 0 55rpx;
+  display: block;
 }
 .allDetail{
   background: white;

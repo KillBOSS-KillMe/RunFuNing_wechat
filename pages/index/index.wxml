@@ -14,6 +14,9 @@
       </block>
     </swiper>
   </view>
+  <view wx:if="{{userInfoButtonShow}}" class="userInfoButtonShow">
+    <view>请授权小程序</view>
+  </view>
   <view class="VerticalBox" wx:if="{{!userInfoButtonShow}}">
     <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}">
       <view class="cu-item {{index==TabCur?'cur':''}}" wx:for="{{navList}}" wx:key bindtap='tabSelect' data-index="{{index}}" data-cid="{{item.id}}">
@@ -28,23 +31,25 @@
           <view class="content-R">
             <view class="goodsName" bindtap='detail' data-index="{{index}}">{{item.spec}}</view>
             <!-- <view class="goodstag">剩余</view> -->
-            <view class="goodstag">   </view>
-            <view class='pricewrap'>
-              ￥
-              <text>{{item.price}}</text>
+            <!-- <view class="goodstag">   </view> -->
+            <view class="goodsInfo">
+                <view class='pricewrap'>
+                  ￥{{item.price}}
+                </view>
+                <view class="carts-num">
+                  <!-- 减按钮 -->
+                  <image src="../../image/cut.png" class="minus" bindtap="numDown" data-index="{{index}}">
+                    -
+                  </image>
+                  <!-- 文本框值 -->
+                  <input min="1" type="number" class="view_text_center" bindinput='getNum' data-index="{{index}}" value="{{item.car_num}}" />
+                  <!-- 加按钮 -->
+                  <image src="../../image/add.png" class="plus" bindtap="numUp" data-index="{{index}}">
+                    +
+                  </image>
+                </view>
             </view>
-            <view class="carts-num">
-              <!-- 减按钮 -->
-              <image src="../../image/cut.png" class="minus" bindtap="numDown" data-index="{{index}}">
-                -
-              </image>
-              <!-- 文本框值 -->
-              <input min="1" type="number" class="view_text_center" bindinput='getNum' data-index="{{index}}" value="{{item.car_num}}" />
-              <!-- 加按钮 -->
-              <image src="../../image/add.png" class="plus" bindtap="numUp" data-index="{{index}}">
-                +
-              </image>
-            </view>
+            
             <!-- <image wx:if="{{item.is_car == 0}}" class="shopcar" bindtap="addShopcar" src="../../image/gouwuche.png" data-iscar="{{item.is_car}}" data-goodsid="{{item.id}}" data-price="{{item.price}}" data-index="{{index}}" data-spec="{{item.spec}}" data-img="{{item.img}}"></image>
             <image wx:if="{{item.is_car == 1}}" class="shopcar" bindtap="addShopcar" data-is_car="{{item.is_car}}" src="../../image/gouwuche2.png"></image> -->
             <!-- 主容器 -->

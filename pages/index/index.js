@@ -20,18 +20,30 @@ Page({
   },
   onLoad: function () {
     this.setData({
-      imgUrl: app.globalData.imgUrl
+      imgUrl: app.globalData.imgUrl,
+      userInfo: app.globalData.userInfo
     })
     this.getBanner()
-    this.getUserInfo()
-
-  },
-  onShow() {
     let userInfo = this.data.userInfo
     if (userInfo.hasOwnProperty("id")) {
       // 获取分类
       this.getGoodsClass()
+    } else {
+      wx.getSetting({
+        success: res => {
+          if (res.authSetting['scope.userInfo']) {
+            this.setData({
+              userInfoButtonShow: false
+            })
+            this.getUserInfo()
+          }
+        }
+      })
     }
+  },
+  onShow() {
+    // let userInfo = this.data.userInfo
+    
   },
   getBanner() {
     wx.request({
@@ -50,7 +62,8 @@ Page({
     // wx.getSetting({
     //   success: res => {
     //     if (res.authSetting['scope.userInfo']) {
-
+    // 查看是否授权
+    
     wx.getUserInfo({
       success: res => {
         let userInfo = res.userInfo
@@ -112,6 +125,7 @@ Page({
     let index = e.currentTarget.dataset.index
     let node = this.data.goodsArr[index]
     let data = `longimg=${node.longimg}&id=${node.id}&img=${node.img}&price=${node.price}&spec=${node.spec}&iscar=${node.car_num}`
+    console.log(data)
     wx.navigateTo({
       url: `/pages/detail/detail?${data}`
     })

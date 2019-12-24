@@ -15,13 +15,16 @@ Page({
     id:[],
     iscar:'',
     imgUrl: '',
-    options: null
+    options: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let imgUrl = app.globalData.imgUrl
+    options.img = imgUrl + options.img
+    options.longimg = imgUrl + options.longimg
     this.setData({
       options: options,
       imgUrl: app.globalData.imgUrl
